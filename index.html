@@ -1,0 +1,1005 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>1on1で大事なこと</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700;900&display=swap">
+<style>
+/* Layout: 単一カラムの縦読み。各章は「問い → 仕組みの図 → 根拠（確度バッジ）→ 現場での形」の順に積む */
+:root{
+  --bg:#F6F1E7; --surface:#FFFDF8; --surface2:#EFE7D8; --ink:#1B2A38; --muted:#56606B;
+  --line:#DDD2BF; --teal:#1E6E66; --teal-soft:#D9EAE6; --amber:#B97D33; --amber-soft:#F3E4CC;
+  --rust:#9C4A3C; --rust-soft:#F2DDD7; --navy:#1B2A38; --on-navy:#F6F1E7;
+  --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
+  --sans:"Noto Sans JP","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121A22; --surface:#1A2530; --surface2:#22303D; --ink:#ECE5D7; --muted:#A5AFB9;
+  --line:#2F3E4C; --teal:#62B8AC; --teal-soft:#1D3A38; --amber:#DCA661; --amber-soft:#3A2E1E;
+  --rust:#E08B79; --rust-soft:#3D2522; --navy:#0B1117; --on-navy:#ECE5D7; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121A22; --surface:#1A2530; --surface2:#22303D; --ink:#ECE5D7; --muted:#A5AFB9;
+  --line:#2F3E4C; --teal:#62B8AC; --teal-soft:#1D3A38; --amber:#DCA661; --amber-soft:#3A2E1E;
+  --rust:#E08B79; --rust-soft:#3D2522; --navy:#0B1117; --on-navy:#ECE5D7; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.85;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--surface)}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--serif);text-wrap:balance;line-height:1.4;margin:0}
+h2{font-size:clamp(1.45rem,4.2vw,1.9rem);font-weight:900}
+h3{font-size:1.15rem;font-weight:700}
+p{margin:0}
+a{color:var(--teal)}
+:focus-visible{outline:3px solid var(--amber);outline-offset:2px;border-radius:4px}
+.muted{color:var(--muted)}
+.small{font-size:.86rem}
+.icon{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-block:8px;max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav button{flex:none;font:500 .8rem/1 var(--sans);color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:999px;padding:7px 11px;cursor:pointer;white-space:nowrap}
+.nav button.on{background:var(--navy);color:var(--on-navy);border-color:var(--navy)}
+.progress{height:3px;background:var(--teal);width:0;transition:width .1s linear}
+
+/* hero */
+.hero{padding-block:44px 36px;display:grid;gap:22px}
+.eyebrow{font:700 .78rem/1 var(--sans);letter-spacing:.14em;color:var(--teal)}
+.hero h1{font-size:clamp(2.1rem,8vw,3.3rem);font-weight:900;letter-spacing:.02em}
+.thesis{font-family:var(--serif);font-size:clamp(1.1rem,3.6vw,1.35rem);font-weight:700;line-height:1.7}
+.thesis em{font-style:normal;color:var(--teal);background:linear-gradient(transparent 62%,var(--teal-soft) 62%)}
+.meter{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:12px}
+.meter-row{display:grid;grid-template-columns:4.6em 1fr 3.2em;align-items:center;gap:10px;font-size:.9rem}
+.meter-bar{height:16px;border-radius:8px;background:var(--surface2);overflow:hidden}
+.meter-bar span{display:block;height:100%;border-radius:8px}
+.num{font-variant-numeric:tabular-nums;font-weight:700;text-align:right}
+
+/* sections */
+section{padding-block:44px;border-top:1px solid var(--line);scroll-margin-top:64px}
+.sec-head{display:grid;gap:8px;margin-bottom:22px}
+.sec-no{font:700 .78rem/1 var(--sans);letter-spacing:.12em;color:var(--amber)}
+.lead{font-size:1.02rem}
+.stack{display:grid;gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;min-width:0}
+.callout{border-left:4px solid var(--teal);background:var(--teal-soft);padding:14px 16px;border-radius:0 10px 10px 0}
+.callout.warn{border-left-color:var(--rust);background:var(--rust-soft)}
+.callout.note{border-left-color:var(--amber);background:var(--amber-soft)}
+.callout strong{font-weight:700}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px}
+.term{font-weight:700;color:var(--teal)}
+.plain{display:inline-block;font-size:.82rem;color:var(--muted);border:1px dashed var(--line);border-radius:6px;padding:0 6px;margin-left:4px}
+
+/* badges */
+.badge{display:inline-flex;align-items:center;gap:4px;font:700 .72rem/1 var(--sans);padding:5px 8px;border-radius:999px;white-space:nowrap;vertical-align:middle}
+.bA{background:var(--teal-soft);color:var(--teal);border:1px solid var(--teal)}
+.bB{background:var(--amber-soft);color:var(--amber);border:1px solid var(--amber)}
+.bC{background:var(--rust-soft);color:var(--rust);border:1px solid var(--rust)}
+
+/* toggle buttons */
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--surface2);flex-wrap:wrap;gap:2px}
+.seg button{font:500 .85rem/1 var(--sans);border:0;background:transparent;color:var(--muted);padding:8px 13px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+
+/* table */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.88rem}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+thead th{background:var(--surface2);font-weight:700}
+tbody tr:last-child td{border-bottom:0}
+tr.hl td{background:var(--teal-soft)}
+
+/* diagrams */
+.diagram{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px}
+.diagram svg{display:block;width:100%;height:auto;min-width:520px}
+svg text{font-family:var(--sans)}
+.kolb-node{cursor:pointer}
+.kolb-node circle{fill:var(--surface2);stroke:var(--line);stroke-width:2;transition:fill .2s}
+.kolb-node.on circle{fill:var(--teal);stroke:var(--teal)}
+.kolb-node text{fill:var(--ink);font-size:13px;font-weight:700}
+.kolb-node.on text{fill:var(--surface)}
+.kolb-panel{margin-top:12px}
+
+/* evidence */
+.ev-list{display:grid;gap:12px}
+.ev{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:8px}
+.ev-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.ev h3{font-size:1rem}
+.ev .limit{font-size:.86rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px}
+
+/* dot plot */
+.dots{display:grid;gap:14px}
+.dot-row{display:grid;gap:6px}
+.dot-label{font-size:.88rem;font-weight:500}
+.track{position:relative;height:30px;border-bottom:1px solid var(--line)}
+.dot{position:absolute;top:6px;width:16px;height:16px;border-radius:50%;transform:translateX(-50%)}
+.dot.hi{background:var(--teal)}
+.dot.lo{background:var(--surface);border:3px solid var(--rust)}
+.dot-val{position:absolute;top:-2px;font-size:.75rem;font-variant-numeric:tabular-nums;transform:translate(-50%,-100%);white-space:nowrap;color:var(--muted)}
+.axis{position:relative;height:18px;font-size:.72rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.axis span{position:absolute;transform:translateX(-50%)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.82rem;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+
+/* timeline */
+.tl{display:grid;gap:0;position:relative}
+.tl-step{display:grid;grid-template-columns:44px 1fr;gap:14px;position:relative;padding-bottom:22px}
+.tl-step:not(:last-child)::before{content:"";position:absolute;left:21px;top:44px;bottom:0;width:2px;background:var(--line)}
+.tl-icon{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:var(--on-navy)}
+.tl-body{display:grid;gap:6px;min-width:0}
+.tl-phase{font:700 .74rem/1 var(--sans);letter-spacing:.1em;color:var(--amber)}
+ul.tidy{margin:0;padding-left:1.2em;display:grid;gap:4px}
+
+/* slider */
+.slider-box{display:grid;gap:12px}
+input[type=range]{width:100%;accent-color:var(--teal)}
+.split{display:flex;height:34px;border-radius:8px;overflow:hidden;font-size:.82rem;font-weight:700}
+.split div{display:grid;place-items:center;color:var(--surface);transition:width .15s;white-space:nowrap;overflow:hidden}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;font:500 .86rem/1 var(--sans);border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:9px 12px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--teal);color:var(--surface);border-color:var(--teal)}
+.qlist{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.qlist li{background:var(--surface2);border-radius:8px;padding:10px 12px;font-family:var(--serif);font-weight:500}
+
+/* accordion */
+details.acc{background:var(--surface);border:1px solid var(--line);border-radius:12px}
+details.acc+details.acc{margin-top:10px}
+details.acc summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;gap:12px;align-items:center;font-weight:700}
+details.acc summary::-webkit-details-marker{display:none}
+details.acc summary .chev{margin-left:auto;transition:transform .2s}
+details.acc[open] summary .chev{transform:rotate(180deg)}
+.acc-body{padding:0 16px 16px;display:grid;gap:10px}
+.rx{display:grid;grid-template-columns:auto 1fr;gap:6px 10px;font-size:.92rem}
+.rx b{color:var(--rust);white-space:nowrap}
+.rx b.ok{color:var(--teal)}
+
+/* quiz */
+.quiz{display:grid;gap:10px}
+.qitem{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:10px}
+.qbtns{display:flex;gap:8px;flex-wrap:wrap}
+.qbtns button{font:500 .85rem/1 var(--sans);border:1px solid var(--line);background:var(--surface2);color:var(--ink);padding:9px 12px;border-radius:8px;cursor:pointer}
+.qans{font-size:.9rem;border-radius:8px;padding:10px 12px}
+.qans.ok{background:var(--teal-soft)}
+.qans.ng{background:var(--rust-soft)}
+
+/* referral flow */
+.flow{display:grid;gap:10px}
+.flow-step{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.flow-arrow{text-align:center;color:var(--muted);line-height:1}
+
+/* checklist */
+.check{display:grid;gap:8px}
+.check label{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;cursor:pointer}
+.check input{margin-top:6px;width:18px;height:18px;accent-color:var(--teal);flex:none}
+.score{position:sticky;bottom:max(12px,env(safe-area-inset-bottom,0px));background:var(--navy);color:var(--on-navy);border-radius:12px;padding:12px 16px;display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:.92rem}
+.score strong{font-variant-numeric:tabular-nums;font-size:1.1rem}
+
+/* dark band */
+.band{background:var(--navy);color:var(--on-navy);border-radius:14px;padding:22px}
+.band h3,.band p,.band li{color:var(--on-navy)}
+.band .muted{color:var(--on-navy);opacity:.78}
+
+/* radical candor quadrant */
+.quad{display:grid;grid-template-columns:28px 1fr 1fr;grid-template-rows:1fr 1fr 28px;gap:8px;max-width:520px}
+.quad .ylab{grid-row:1/3;grid-column:1;writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-size:.78rem;color:var(--muted)}
+.quad .xlab{grid-column:2/4;grid-row:3;text-align:center;font-size:.78rem;color:var(--muted)}
+.qcell{border:1px solid var(--line);background:var(--surface2);color:var(--ink);border-radius:10px;padding:12px;min-height:84px;font:700 .9rem/1.4 var(--sans);text-align:left;cursor:pointer;display:grid;gap:4px;align-content:start}
+.qcell small{font-weight:400;font-size:.74rem;color:var(--muted)}
+.qcell[aria-pressed="true"]{outline:3px solid var(--teal);outline-offset:-3px}
+.qcell.good{background:var(--teal-soft)}
+/* nine box */
+.nine-wrap{overflow-x:auto}
+.nine{display:grid;grid-template-columns:4.5em repeat(3,minmax(88px,1fr));gap:6px;min-width:360px}
+.nine .h{font-size:.78rem;font-weight:700;color:var(--muted);display:grid;place-items:center;text-align:center}
+.nine button{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;min-height:56px;font:500 .8rem/1.35 var(--sans);cursor:pointer;padding:6px}
+.nine button[aria-pressed="true"]{background:var(--teal);color:var(--surface);border-color:var(--teal)}
+/* books */
+.books{display:grid;gap:12px}
+.book{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:8px;min-width:0}
+.book-top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-start}
+.book h3{font-size:1.02rem}
+.meta{font-size:.8rem;color:var(--muted)}
+.kind{font:700 .72rem/1 var(--sans);padding:5px 8px;border-radius:6px;white-space:nowrap;border:1px solid var(--line);background:var(--surface2);color:var(--ink)}
+.kind.res{border-color:var(--teal);color:var(--teal);background:var(--teal-soft)}
+.kind.pra{border-color:var(--amber);color:var(--amber);background:var(--amber-soft)}
+.book .use{font-size:.88rem}
+.book .caveat{font-size:.84rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px}
+.linkbtn{font:inherit;color:var(--teal);background:none;border:0;padding:0;text-decoration:underline;cursor:pointer}
+
+.bk{display:inline-block;font:500 .72rem/1.3 var(--sans);padding:3px 8px;border-radius:6px;margin:2px 0 2px 6px;vertical-align:middle;border:1px solid var(--line);white-space:nowrap}
+.bk.res{border-color:var(--teal);color:var(--teal);background:var(--teal-soft)}
+.bk.pra{border-color:var(--amber);color:var(--amber);background:var(--amber-soft)}
+.zone{display:grid;grid-template-columns:28px 1fr 1fr;grid-template-rows:1fr 1fr 28px;gap:8px;max-width:520px}
+.zone .ylab{grid-row:1/3;grid-column:1;writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-size:.78rem;color:var(--muted)}
+.zone .xlab{grid-column:2/4;grid-row:3;text-align:center;font-size:.78rem;color:var(--muted)}
+/* sources */
+ol.src{padding-left:1.4em;margin:0;display:grid;gap:8px;font-size:.88rem}
+ol.src a{word-break:break-all}
+footer{padding-block:30px 50px;border-top:1px solid var(--line);color:var(--muted);font-size:.86rem}
+
+/* reveal: 表示状態を基準に、入場時だけ軽く動く */
+.rv.in{animation:rise .5s ease-out both}
+@keyframes rise{from{transform:translateY(10px)}to{transform:none}}
+@media (prefers-reduced-motion: reduce){.rv.in{animation:none}.progress{transition:none}*{scroll-behavior:auto!important}}
+@media (max-width:480px){.meter-row{grid-template-columns:4em 1fr 2.8em}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 20l1-4.6A8 8 0 1 1 21 12Z"/></symbol>
+  <symbol id="i-ear" viewBox="0 0 24 24"><path d="M6 9a6 6 0 1 1 12 0c0 3-2 4-3 5.5S14 18 12.5 19.5a3 3 0 0 1-4.5-1"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-1.5 2-1.5 3.5"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-note" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></symbol>
+  <symbol id="i-loop" viewBox="0 0 24 24"><path d="M17 2l3 3-3 3"/><path d="M4 11V9a4 4 0 0 1 4-4h12"/><path d="M7 22l-3-3 3-3"/><path d="M20 13v2a4 4 0 0 1-4 4H4"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l9.5 17H2.5z"/><path d="M12 10v4M12 17.5v.01"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-handoff" viewBox="0 0 24 24"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="7" r="3"/><path d="M2 20c0-3 2.2-5 5-5s5 2 5 5M12 20c0-3 2.2-5 5-5s5 2 5 5"/></symbol>
+  <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18M5 21h14M6 7h12M6 7l-3 7a3 3 0 0 0 6 0zM18 7l-3 7a3 3 0 0 0 6 0z"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4zM20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z"/></symbol>
+  <symbol id="i-sprout" viewBox="0 0 24 24"><path d="M12 21v-9"/><path d="M12 12C12 8 9 5 4 5c0 4 3 7 8 7zM12 10c0-3 2.5-6 8-6 0 4-3 6-8 6z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-q" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 16.5v.01"/></symbol>
+</svg>
+
+<nav class="nav" aria-label="章の移動">
+  <div class="nav-inner" id="navInner">
+    <button data-target="s1">逆説</button>
+    <button data-target="s2">定義</button>
+    <button data-target="s3">仕組み</button>
+    <button data-target="s4">根拠</button>
+    <button data-target="s5">設計</button>
+    <button data-target="s6">1回の流れ</button>
+    <button data-target="s7">聴く・問う</button>
+    <button data-target="s8">話題</button>
+    <button data-target="s9">失敗</button>
+    <button data-target="s10">境界線</button>
+    <button data-target="s11">限界</button>
+    <button data-target="s12">点検</button>
+    <button data-target="src">出典</button>
+  </div>
+  <div class="progress" id="progress"></div>
+</nav>
+
+<main class="wrap">
+  <header class="hero">
+    <div class="eyebrow">スタッフ教育　実践リファレンス</div>
+    <h1>1on1で大事なこと</h1>
+    <p class="thesis">1on1は、上司が部下を確認する場ではなく、<em>部下が自分の仕事を言葉にして、次の一歩を自分で決める時間</em>である。研究と調査の多くが、この点を指している。</p>
+    <div class="meter" aria-label="良い1on1の話す量の目安">
+      <p class="small muted">良い1on1の「話す量」のイメージ（研究の示唆を図にしたもので、厳密な基準値ではない）</p>
+      <div class="meter-row"><span>部下</span><div class="meter-bar"><span style="width:70%;background:var(--teal)"></span></div><span class="num">多め</span></div>
+      <div class="meter-row"><span>上司</span><div class="meter-bar"><span style="width:30%;background:var(--amber)"></span></div><span class="num">少なめ</span></div>
+    </div>
+    <p class="small muted">各章の根拠には確度バッジを付けています。<span class="badge bA">確度A</span> メタ分析・複数研究で一貫　<span class="badge bB">確度B</span> 単一の実証研究・大規模調査　<span class="badge bC">確度C</span> 社内データ・商用調査・実証の乏しい通説</p>
+    <p class="small muted">書籍から取り入れた内容には、著者の立場を示す印を付けています。<span class="bk res">研究者の著作</span> 自身の研究・調査に基づく　<span class="bk pra">実務家の著作</span> 導入・指導の経験に基づく</p>
+  </header>
+
+  <!-- 1 -->
+  <section id="s1" class="rv">
+    <div class="sec-head">
+      <div class="sec-no">第1章　逆説から入る</div>
+      <h2>広く行われているのに、約半数は「いまひとつ」</h2>
+      <p class="lead">1on1は多くの職場で導入されています。それでも、受ける側の評価は割れています。まず、この「やっているのに効いていない」状態を正確に見ておきます。</p>
+    </div>
+    <div class="grid2">
+      <div class="card stack">
+        <span class="badge bB" style="justify-self:start">確度B　国内3,000名調査</span>
+        <p><strong class="num" style="font-size:2rem;color:var(--rust)">約47%</strong></p>
+        <p>1on1を経験した部下のうち「不満」または「どちらともいえない」と答えた割合（パーソル総合研究所、2024年6月調査。公表資料により47.3%と47.5%の表記があり、内訳の合計は47.3%）。上司・部下とも約3割が「効果が感じられない」「学ぶ仕組みがない」を困りごとに挙げています。</p>
+      </div>
+      <div class="card stack">
+        <span class="badge bB" style="justify-self:start">確度B　ロゲルバーグの調査群</span>
+        <p><strong class="num" style="font-size:2rem;color:var(--rust)">約50%</strong></p>
+        <p>米国の組織心理学者ロゲルバーグの調査では、上司が良い評価をしている場合でも、約半数の部下が自分の1on1を「中身が乏しく、最適ではない」と評価しました。同時に、部下は1on1を<strong>減らしたい</strong>のではなく<strong>もっと欲しい</strong>と答えています。会議の中で珍しい存在です。</p>
+      </div>
+    </div>
+
+    <div class="card stack" style="margin-top:16px">
+      <h3>上司と部下は、同じ時間を違うものとして見ている</h3>
+      <p class="small muted">「1on1で、どちらが多く話していたか」。同じ調査で上司と部下に尋ねた結果を切り替えて見てください。</p>
+      <div class="seg" role="group" aria-label="視点の切り替え">
+        <button type="button" id="gapBoss" aria-pressed="true">上司の答え</button>
+        <button type="button" id="gapMember" aria-pressed="false">部下の答え</button>
+      </div>
+      <div id="gapBars" class="stack" style="gap:10px"></div>
+      <p class="small">上司は「部下が多く話していた」と感じ、部下は「上司が多く話していた」と感じる傾向がありました。<strong>上司の手応えは、部下の体験の代わりにならない</strong>。この認識のずれが、本リファレンス全体の出発点です。</p>
+      <p class="small muted">出典：パーソル総合研究所「部下の成長支援を目的とした1on1ミーティングに関する定量調査」（2025年2月発表）。「同じくらい」等の選択肢は図から省略しています。</p>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section id="s2" class="rv">
+    <div class="sec-head">
+      <div class="sec-no">第2章　定義</div>
+      <h2>1on1とは何か、何ではないか</h2>
+      <p class="lead">研究では、1on1を次のように定義しています。<strong>上司と部下が同じ時間に向き合い、主に部下の仕事上のニーズを扱うために意図して設ける対話</strong>（Flinchum, 2022）。ポイントは3つです。</p>
+    </div>
+    <div class="grid2">
+      <div class="card stack"><svg class="icon" style="color:var(--teal)"><use href="#i-clock"/></svg><h3>同じ時間で</h3><p class="small">メールやチャットのように時間差がない。誤解をその場で解き、感情の温度も伝わる。研究ではこれを<span class="term">同期性</span><span class="plain">同じ時間に、やり取りが往復すること</span>と呼びます。</p></div>
+      <div class="card stack"><svg class="icon" style="color:var(--teal)"><use href="#i-handoff"/></svg><h3>一対一で</h3><p class="small">チーム会議の中で個人へ指摘すると、内容が正しくても恥や萎縮を生みやすい。一対一だから、その人に合わせた支援ができます。</p></div>
+      <div class="card stack"><svg class="icon" style="color:var(--teal)"><use href="#i-flag"/></svg><h3>部下が主役</h3><p class="small">インテル元CEOのグローブは1983年の著書で「1on1は部下の会議であり、議題と雰囲気は部下が決める」と書きました。上司の用件は最後に回します。</p></div>
+    </div>
+
+    <h3 style="margin-top:26px;margin-bottom:10px">似た面談との違い</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>種類</th><th>主役</th><th>主な目的</th><th>1on1との違い</th></tr></thead>
+        <tbody>
+          <tr class="hl"><td><strong>1on1</strong></td><td>部下</td><td>経験の振り返り・支援・関係づくり</td><td>—</td></tr>
+          <tr><td>進捗確認・報告</td><td>上司</td><td>業務の把握</td><td>上司の知りたいことが中心になる。1on1の一部にはなり得るが、全部になると価値が落ちる</td></tr>
+          <tr><td>評価面談</td><td>組織</td><td>査定・処遇の決定</td><td>判定の場では本音が出にくい。1on1と混ぜないことが基本</td></tr>
+          <tr><td>雑談</td><td>双方</td><td>関係の潤滑</td><td>関係づくりには役立つが、毎回雑談で終わると経験学習が起きない</td></tr>
+          <tr><td>カウンセリング</td><td>相談者</td><td>心理的な問題の解決</td><td>専門職が担う領域。上司は診断や治療をしない（第10章）</td></tr>
+          <tr><td>チーム会議</td><td>チーム</td><td>情報共有・調整</td><td>個別の事情や弱みは扱いにくい</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout note small" style="margin-top:14px"><strong>キズキの現場に置き換えると：</strong>ここで扱うのは、スタッフ同士（上長とメンバー）の1on1です。利用者との個別面談は、支援計画に基づく専門的な支援であり、目的も責任の形も異なります。共通する技法（傾聴・問い）はありますが、同じものとして扱わないでください。</div>
+  </section>
+
+  <!-- 3 -->
+  <section id="s3" class="rv">
+    <div class="sec-head">
+      <div class="sec-no">第3章　仕組み</div>
+      <h2>なぜ効くのか：3つのエンジン</h2>
+      <p class="lead">「話を聞くと良い」は直感ですが、それだけでは手法になりません。1on1が成果につながる経路は、少なくとも3つの理論で説明されています。</p>
+    </div>
+
+    <h3 style="margin-bottom:8px">エンジン1　経験を学びに変える</h3>
+    <p style="margin-bottom:12px">人は仕事をしただけでは学びきれません。教育学者コルブの<span class="term">経験学習サイクル</span><span class="plain">経験 → 振り返り → 自分なりの教訓 → 試す、の循環</span>では、学びは4つの段階を回ることで起こるとされます。忙しい現場で最も抜け落ちるのは「振り返り」と「言葉にする」段階です。1on1は、そこを意図的に確保する装置として位置づけられてきました（ヤフーの導入時の説明もこの考え方です）。各段階をタップすると、1on1での問いの例が出ます。</p>
+    <div class="diagram">
+      <svg viewBox="0 0 560 330" role="img" aria-label="経験学習サイクルの図">
+        <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--muted)"/></marker></defs>
+        <path d="M325 62 Q440 80 455 140" fill="none" stroke="var(--muted)" stroke-width="2" marker-end="url(#ar)"/>
+        <path d="M455 195 Q440 255 330 270" fill="none" stroke="var(--muted)" stroke-width="2" marker-end="url(#ar)"/>
+        <path d="M230 270 Q120 255 105 195" fill="none" stroke="var(--muted)" stroke-width="2" marker-end="url(#ar)"/>
+        <path d="M105 140 Q120 80 235 62" fill="none" stroke="var(--muted)" stroke-width="2" marker-end="url(#ar)"/>
+        <g class="kolb-node on" data-k="0" tabindex="0" role="button" aria-label="具体的な経験"><circle cx="280" cy="55" r="46"/><text x="280" y="50" text-anchor="middle">具体的な</text><text x="280" y="68" text-anchor="middle">経験</text></g>
+        <g class="kolb-node" data-k="1" tabindex="0" role="button" aria-label="振り返り"><circle cx="470" cy="168" r="46"/><text x="470" y="163" text-anchor="middle">振り返り</text><text x="470" y="181" text-anchor="middle" style="font-size:11px;font-weight:500">1on1の中心</text></g>
+        <g class="kolb-node" data-k="2" tabindex="0" role="button" aria-label="教訓を言葉にする"><circle cx="280" cy="275" r="46"/><text x="280" y="270" text-anchor="middle">教訓を</text><text x="280" y="288" text-anchor="middle">言葉にする</text></g>
+        <g class="kolb-node" data-k="3" tabindex="0" role="button" aria-label="試す"><circle cx="90" cy="168" r="46"/><text x="90" y="163" text-anchor="middle">次に</text><text x="90" y="181" text-anchor="middle">試す</text></g>
+        <text x="280" y="172" text-anchor="middle" style="font-size:12px;fill:var(--muted)">1on1が支えるのは</text>
+        <text x="280" y="190" text-anchor="middle" style="font-size:12px;fill:var(--muted)">右下の2段階</text>
+      </svg>
+    </div>
+    <div class="card kolb-panel" id="kolbPanel" aria-live="polite"></div>
+    <p class="small muted" style="margin-top:8px">国内調査（パーソル総研）も「成長」を「振り返り（内省的観察）と、教訓の言語化（抽象的概念化）ができるようになること」と定義して測定しています。</p>
+
+    <h3 style="margin-top:30px;margin-bottom:8px">エンジン2　3つの心理的欲求を満たす</h3>
+    <p style="margin-bottom:12px"><span class="term">自己決定理論</span><span class="plain">人の意欲の土台に3つの欲求があるとする心理学の理論</span>は、人が意欲的に働くには<strong>自律性</strong>（自分で選べている感覚）、<strong>有能感</strong>（できている感覚）、<strong>関係性</strong>（大切にされている感覚）が満たされる必要があるとします。2022年の研究（N=303、2時点の調査）は、1on1がまずこの欲求を満たし、その結果として<span class="term">エンゲージメント</span><span class="plain">仕事に心身と頭を注いでいる状態</span>が高まるという経路を支持しました。</p>
+    <div class="diagram">
+      <svg viewBox="0 0 620 260" role="img" aria-label="1on1から欲求充足を経てエンゲージメントに至る経路図">
+        <defs><marker id="ar2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--teal)"/></marker></defs>
+        <rect x="10" y="30" width="170" height="60" rx="10" fill="var(--surface2)" stroke="var(--line)"/>
+        <text x="95" y="56" text-anchor="middle" style="font-size:13px;font-weight:700;fill:var(--ink)">質：関係志向の関わり</text>
+        <text x="95" y="76" text-anchor="middle" style="font-size:11px;fill:var(--muted)">傾聴・配慮・承認・意見を聞く</text>
+        <rect x="10" y="105" width="170" height="60" rx="10" fill="var(--surface2)" stroke="var(--line)"/>
+        <text x="95" y="131" text-anchor="middle" style="font-size:13px;font-weight:700;fill:var(--ink)">質：課題志向の関わり</text>
+        <text x="95" y="151" text-anchor="middle" style="font-size:11px;fill:var(--muted)">目標の明確化・障害の除去</text>
+        <rect x="10" y="180" width="170" height="60" rx="10" fill="var(--surface2)" stroke="var(--line)" stroke-dasharray="5 4"/>
+        <text x="95" y="206" text-anchor="middle" style="font-size:13px;font-weight:700;fill:var(--ink)">量：頻度</text>
+        <text x="95" y="226" text-anchor="middle" style="font-size:11px;fill:var(--muted)">最低でも月1回が前提</text>
+        <rect x="240" y="80" width="170" height="110" rx="12" fill="var(--teal-soft)" stroke="var(--teal)"/>
+        <text x="325" y="110" text-anchor="middle" style="font-size:13px;font-weight:700;fill:var(--ink)">3つの欲求が満たされる</text>
+        <text x="325" y="134" text-anchor="middle" style="font-size:12px;fill:var(--ink)">自律性</text>
+        <text x="325" y="154" text-anchor="middle" style="font-size:12px;fill:var(--ink)">有能感</text>
+        <text x="325" y="174" text-anchor="middle" style="font-size:12px;fill:var(--ink)">関係性</text>
+        <rect x="470" y="100" width="140" height="70" rx="12" fill="var(--navy)"/>
+        <text x="540" y="132" text-anchor="middle" style="font-size:13px;font-weight:700;fill:var(--on-navy)">エンゲージ</text>
+        <text x="540" y="152" text-anchor="middle" style="font-size:13px;font-weight:700;fill:var(--on-navy)">メント</text>
+        <line x1="180" y1="60" x2="236" y2="110" stroke="var(--teal)" stroke-width="4" marker-end="url(#ar2)"/>
+        <line x1="180" y1="135" x2="236" y2="135" stroke="var(--teal)" stroke-width="2.2" marker-end="url(#ar2)"/>
+        <line x1="180" y1="210" x2="236" y2="165" stroke="var(--teal)" stroke-width="1.4" stroke-dasharray="4 4" marker-end="url(#ar2)"/>
+        <line x1="410" y1="135" x2="466" y2="135" stroke="var(--teal)" stroke-width="3" marker-end="url(#ar2)"/>
+        <text x="208" y="22" text-anchor="middle" style="font-size:11px;fill:var(--muted)">線の太さ＝影響の相対的な大きさ</text>
+      </svg>
+    </div>
+    <div class="callout small" style="margin-top:12px"><strong>読み取るべきこと：</strong>3つの要素を並べて比較すると、欲求充足を最もよく説明したのは<strong>関係志向の関わり</strong>（説明できた分散の約8割）でした。頻度だけを入れたモデルでは効果が見られたものの、3つを並べると頻度の寄与ははっきりしなくなりました。「回数を増やせば良くなる」ではなく、<strong>月1回以上を確保したうえで、中身の質が決め手</strong>という読み方になります。<span class="badge bB">確度B</span></div>
+
+    <h3 style="margin-top:30px;margin-bottom:8px">エンジン3　言っても大丈夫という土台</h3>
+    <p><span class="term">心理的安全性</span><span class="plain">このチームでは、質問や失敗の報告をしても恥をかかされない、とメンバーが共有している感覚</span>は、エドモンドソン（1999）がチーム単位の概念として定式化し、製造業の51チームで検証したものです。安全性が高いチームほど、質問・相談・失敗の共有といった<strong>学習行動</strong>が多く、その学習行動を通じて成果が上がっていました。経験学習（エンジン1）の「振り返り」は、本音が出なければ成立しません。1on1はこの安全性を一対一で確かめ、育てる場になり得ます。</p>
+    <div class="card stack" style="margin-top:14px">
+      <h3>安全なだけでは学ばない：4つのゾーン<span class="bk res">『恐れのない組織』エドモンドソン</span></h3>
+      <p class="small">エドモンドソンは講演や著書で、心理的安全性を「ぬるさ」と混同しないよう、安全性と、高い成果に向かう意欲・責任の2軸で4つの状態を示しています。マスを選ぶと説明が出ます。</p>
+      <div class="zone" id="zone" role="group" aria-label="心理的安全性と責任の4つのゾーン">
+        <div class="ylab">心理的安全性 →</div>
+        <button type="button" class="qcell" data-z="1">快適ゾーン<small>安全だが、挑まない</small></button>
+        <button type="button" class="qcell good" data-z="0" aria-pressed="true">学習ゾーン<small>安全で、高い基準もある</small></button>
+        <button type="button" class="qcell" data-z="3">無関心ゾーン<small>安全でも、挑んでもいない</small></button>
+        <button type="button" class="qcell" data-z="2">不安ゾーン<small>基準は高いが、言えない</small></button>
+        <div class="xlab">成果への意欲と責任 →</div>
+      </div>
+      <p class="small" id="zoneText" aria-live="polite"></p>
+      <p class="small muted">1on1に当てはめると、受け止めるだけで次の一歩を求めない1on1は「快適ゾーン」、詰めるだけで本音が出ない1on1は「不安ゾーン」に近づきます。第7章の「率直さの4象限」は、同じことを伝える側から見た図です。</p>
+    </div>
+    <div class="callout note small" style="margin-top:12px"><strong>注意：</strong>心理的安全性は本来「チーム全体の共有された感覚」を指す概念です。上司と一人の部下の関係だけで作れるものではなく、チーム会議での振る舞いと一貫している必要があります。1on1で受け止めても、会議で同じ話題を責めれば、安全性はすぐに崩れます。</div>
+  </section>
+
+  <!-- 4 -->
+  <section id="s4" class="rv">
+    <div class="sec-head">
+      <div class="sec-no">第4章　根拠マップ</div>
+      <h2>どこまで確かな話なのか</h2>
+      <p class="lead">1on1の根拠として引用される数字には、査読付きの研究から企業の社内データ、実証の乏しい通説まで混ざっています。確度で絞り込んで見比べてください。</p>
+    </div>
+    <div class="seg" role="group" aria-label="確度で絞り込む" style="margin-bottom:14px">
+      <button type="button" data-f="all" aria-pressed="true">すべて</button>
+      <button type="button" data-f="A" aria-pressed="false">確度A</button>
+      <button type="button" data-f="B" aria-pressed="false">確度B</button>
+      <button type="button" data-f="C" aria-pressed="false">確度C</button>
+    </div>
+    <div class="ev-list" id="evList">
+      <article class="ev" data-g="A"><div class="ev-top"><h3>フィードバックの3分の1超は、成績を下げていた</h3><span class="badge bA">確度A</span></div><p class="small">Kluger &amp; DeNisi（1996）のメタ分析（607の効果量、23,663件の観察）。平均では成績を上げる（d=.41）一方、3分の1を超える介入で成績が低下していました。注意が「課題」から「自分自身」へ向くほど効果が落ちる、と説明されています。</p><p class="limit">1on1そのものの研究ではない。ただし1on1で行うフィードバックの設計に直結する（第7章）。</p></article>
+      <article class="ev" data-g="A"><div class="ev-top"><h3>心理的安全性 → 学習行動 → 成果</h3><span class="badge bA">確度A</span></div><p class="small">エドモンドソン（1999）。製造業51チームのフィールド研究。後続研究で広く再検討され、概念として定着しています。</p><p class="limit">原典は単一企業の研究。チーム単位の概念であり、一対一の関係にそのまま当てはめるには慎重さが要る。</p></article>
+      <article class="ev" data-g="B"><div class="ev-top"><h3>頻度よりも質、特に関係志向の関わり</h3><span class="badge bB">確度B</span></div><p class="small">Flinchum（2022、ロゲルバーグ指導の博士論文）。米国の常勤者303名、1週間空けた2回の調査。欲求充足を介したエンゲージメントへの経路を支持。最低月1回が前提条件。</p><p class="limit">未出版の博士論文。自己報告。説明できた分散は約18%（欲求充足）で、効果の大きさは中程度以下。頻度と質の相乗効果は支持されなかった。</p></article>
+      <article class="ev" data-g="B"><div class="ev-top"><h3>部下が多く話し、部下がテーマを決めるほど「成長」が高い</h3><span class="badge bB">確度B</span></div><p class="small">パーソル総合研究所（2024年6月調査、正社員3,000名）。月2〜3回以上・1回30分以上1時間未満の組み合わせが最も高く、月2〜3回以上・1時間以上が最も低い結果でした。</p><p class="limit">一時点の横断調査であり因果は言えない。成長は本人の自己評価。従業員50名未満の企業は対象外。</p></article>
+      <article class="ev" data-g="B"><div class="ev-top"><h3>部下の参加（話す量）が、1on1の価値の最大の予測因子</h3><span class="badge bB">確度B</span></div><p class="small">ロゲルバーグの調査群（世界の知識労働者約1,000名、米国約250名、経営層約50名への聞き取り）。ロゲルバーグ自身は、部下が全体の5〜9割を話す状態を理想とし、上司が部下よりも多く話すことが「効果の乏しい1on1」の最も強い予測因子だと述べています。好まれる頻度は週1回30分前後、次いで隔週45〜60分。月1回は最も好まれませんでした。</p><p class="limit">主な発表は書籍（邦訳『世界標準の1on1』2025年）とHBR誌。調査は自己報告中心で、査読論文として検証できる範囲は限られる。</p></article>
+      <article class="ev" data-g="C"><div class="ev-top"><h3>先週「意味のある対話」を受けた人の80%が高いエンゲージメント</h3><span class="badge bC">確度C</span></div><p class="small">Gallup。約15,000名のうち、直近の上司との会話を「非常に意味があった」と答えたのは16%。意味を感じる会話の特徴は、重要度の順に、承認、協働と人間関係、目標と優先順位、短く頻繁であること（15〜30分）、強み。弱みの話は意味を感じにくい話題でした。</p><p class="limit">自社の研修・測定（Q12）を販売する組織のデータ。測定尺度の妥当性には研究者からの指摘もある。</p></article>
+      <article class="ev" data-g="C"><div class="ev-top"><h3>高評価のマネジャーほど、1on1を頻繁に行っていた</h3><span class="badge bC">確度C</span></div><p class="small">グーグルのProject Oxygen（2009年〜）。良いマネジャーの行動の筆頭に「良いコーチであること」を挙げ、定期的な1on1を含めました。低評価の上司は、1on1を誰と行うかが一貫していなかったと報告されています。</p><p class="limit">社内データ。高評価だから1on1をする余裕がある、という逆向きの説明も排除できない。</p></article>
+      <article class="ev" data-g="C"><div class="ev-top"><h3>上司との1on1時間が長い人ほど、労働時間が短い</h3><span class="badge bC">確度C</span></div><p class="small">マイクロソフトの社内データ分析（HBR、2020年）。リモート移行期の業務記録から見られた負の相関。</p><p class="limit">相関のみ。原文は有料記事のため、本リファレンスでは要約記事で内容を確認した。業務データの分析は、使い方次第で監視と受け取られるリスクも指摘されている。</p></article>
+      <article class="ev" data-g="C"><div class="ev-top"><h3>「成長の70%は経験から」（70:20:10）</h3><span class="badge bC">確度C</span></div><p class="small">1on1の必要性の説明でよく使われます（本間浩輔氏の著書の要約でも紹介）。起源は1996年の能力開発ガイドで、成功した経営者約200名の自己申告に基づくとされます。</p><p class="limit">米国の人材開発協会（ATD）の記事は、裏づける実証データが乏しく、起源もはっきりしないとする調査を紹介している。比率は目安であり、法則として扱わない。</p></article>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section id="s5" class="rv">
+    <div class="sec-head">
+      <div class="sec-no">第5章　設計</div>
+      <h2>頻度・長さ・誰が決めるか</h2>
+      <p class="lead">形式に正解は一つではありません。ただし、データが示す「外れやすい形」ははっきりしています。</p>
+    </div>
+    <div class="card stack">
+      <h3>国内調査に見る「部下の成長」の差</h3>
+      <p class="small muted">パーソル総合研究所の成長度得点。差は0.5点前後と小さいため、横軸は5.5点から始めています。</p>
+      <div class="legend"><span><i style="background:var(--teal)"></i>高かった条件</span><span><i style="border:3px solid var(--rust);width:12px;height:12px"></i>低かった条件</span></div>
+      <div class="dots" id="dots"></div>
+      <div class="axis" id="axis"></div>
+    </div>
+
+    <div class="grid2" style="margin-top:16px">
+      <div class="card stack"><svg class="icon" style="color:var(--teal)"><use href="#i-cal"/></svg><h3>頻度の選択肢</h3>
+        <ul class="tidy small">
+          <li><strong>週1回・30分前後</strong>：部下が最も好んだ形（ロゲルバーグ）。新任者や経験の浅い人、変化の大きい時期に向く</li>
+          <li><strong>隔週・30〜60分</strong>：次点。国内調査でも月2〜3回・30〜60分が最も高い</li>
+          <li><strong>月1回</strong>：最低ライン。研究で効果が見られたのは月1回以上の場合</li>
+        </ul>
+        <p class="small muted">ロゲルバーグは、部下にも頻度の決定に参加してもらうことを勧めています。また、日時を固定すると「よく顔を合わせる人」「相性の良い人」に時間が偏るのを防げるとしています。長さよりも定期性が大事で、集中した20分でも意味がある、というのが著書『世界標準の1on1』の立場です。</p>
+        <p class="small muted">なお、ロゲルバーグは「頻度を上げてもエンゲージメントは頭打ちにならなかった」と述べる一方、指導下の博士論文（第3章）では、質と並べると頻度の寄与ははっきりしませんでした。頻度は「確保すべき土台」、効果を決めるのは中身、と読むのが両者に整合的です。</p>
+      </div>
+      <div class="card stack"><svg class="icon" style="color:var(--rust)"><use href="#i-alert"/></svg><h3>外れやすい形</h3>
+        <ul class="tidy small">
+          <li><strong>「必要なときに」</strong>：実質的に開かれなくなる</li>
+          <li><strong>高頻度で毎回1時間超</strong>：国内調査で成長度が最も低い組み合わせ</li>
+          <li><strong>上司の都合で頻繁に中止</strong>：「あなたは優先順位が低い」というメッセージとして伝わる</li>
+          <li><strong>会社の義務として実施</strong>：国内調査では月0.5回と最も少なく、自発的な場合（月1.8〜2.8回）と大差</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card stack" style="margin-top:16px">
+      <h3>1回の長さは、資料によって違う</h3>
+      <p class="small">長さについては、書籍と調査で推奨がはっきり分かれます。並べると、時代と前提の違いが見えてきます。</p>
+      <div class="tbl-wrap"><table style="min-width:520px">
+        <thead><tr><th>資料</th><th>推奨・結果</th><th>前提・理由</th></tr></thead>
+        <tbody>
+          <tr><td>グローブ『High Output Management』（1983年）<span class="bk pra">実務家</span></td><td>最低1時間。頻度は、仕事に不慣れな人とは週1回程度、経験豊富な人とは数週間に1回</td><td>短いと簡単な話題で終わり、込み入った問題を切り出す余裕がなくなる。頻度は相手の習熟度で変える</td></tr>
+          <tr><td>本間浩輔（ヤフー）<span class="bk pra">実務家</span></td><td>原則、週1回30分</td><td>部下のための業務時間として、毎週確保する</td></tr>
+          <tr><td>ロゲルバーグ『世界標準の1on1』<span class="bk res">研究者</span></td><td>週1回30分前後が最も好まれた。集中した20分でも意味がある</td><td>長さよりも定期性。間隔が2週間を超えると、関係と信頼が弱まりやすい</td></tr>
+          <tr><td>Gallup <span class="badge bC">確度C</span></td><td>毎週15〜30分</td><td>定期的なら、30〜60分よりも効果が大きかった</td></tr>
+          <tr><td>パーソル総合研究所 <span class="badge bB">確度B</span></td><td>月2〜3回以上・30分〜1時間未満が最も高い</td><td>高頻度で1時間以上の組み合わせは最も低かった</td></tr>
+        </tbody>
+      </table></div>
+      <p class="small muted">読み方の一例：頻度が低いほど1回に積み残しが溜まり、長い時間が必要になります（Gallupも同じ指摘をしています）。週1回なら30分前後、隔週なら45〜60分、という組み合わせは各資料と矛盾しません。グローブの「習熟度で頻度を変える」は、新任者には頻度を上げる、という現在の推奨にも通じます。</p>
+    </div>
+
+    <div class="card stack" style="margin-top:16px">
+      <h3>アジェンダの2つの作り方<span class="bk res">『世界標準の1on1』ロゲルバーグ</span></h3>
+      <p class="small">ロゲルバーグは、話の計画（アジェンダ）があることが1on1の効果を予測し、部下がアジェンダを作ったときに上司・部下の双方の評価が最も高かったと報告しています。ただし、固い議事次第よりも「ゆるい枠組み」を勧めています。</p>
+      <div class="grid2">
+        <div class="stack" style="gap:6px"><h3 style="font-size:1rem">定番の質問方式</h3><p class="small">毎回使う大きめの問いを双方で決めておき、時々入れ替える。例：「いま一番の困りごとは？」「うまくいっていることは？」「私に手伝えることは？」。話題に困りにくく、経験の浅い人に向く。</p></div>
+        <div class="stack" style="gap:6px"><h3 style="font-size:1rem">持ち寄り方式</h3><p class="small">部下が話したいテーマを事前に挙げる。上司も自分の項目を書くが、扱うのは部下の項目から。テーマは短期と長期、個人・チーム・組織にまたがってよいと伝えておく。伝えないと、部下は「上司が聞きたそうなこと」を持ってきやすい。</p></div>
+      </div>
+      <p class="small muted">進捗報告に流れないよう、4回に1回はキャリアや成長など長期の話題に充てる、あるいは毎回5〜10分を業務以外の話題に使う、という工夫も紹介されています。</p>
+    </div>
+
+    <div class="card stack" style="margin-top:16px">
+      <h3>スキップレベル1on1（上司の上司との1on1）<span class="bk res">『世界標準の1on1』ロゲルバーグ</span></h3>
+      <p class="small">『世界標準の1on1』は、直属の上司を飛ばして、その上の管理者が行う1on1にも1章を割いています。四半期や半年に一度、20分程度でよいとされます。守るべき点は、直属の上司に実施と趣旨を伝えておくこと、聞いた問題をその場で解決しに行かないこと、直属の上司の立場を損なわないことです。</p>
+      <p class="small muted">キズキの場合：エリアマネージャーと各校のスタッフの関係がこれに当たります。校舎の運営を飛び越えて指示を出す場にしないことが要点です。</p>
+    </div>
+
+    <div class="card stack" style="margin-top:16px">
+      <h3>試してみる：部下が話す割合</h3>
+      <p class="small muted">スライダーを動かすと、その配分で起きやすいことが表示されます。研究の傾向を文章にしたもので、境界の数値は目安です。</p>
+      <div class="slider-box">
+        <label for="talk" class="small">部下が話す割合：<strong id="talkVal" class="num">60</strong>%</label>
+        <input type="range" id="talk" min="10" max="90" step="5" value="60">
+        <div class="split" aria-hidden="true"><div id="sMem" style="background:var(--teal)">部下</div><div id="sBoss" style="background:var(--amber)">上司</div></div>
+        <p id="talkMsg" class="small"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section id="s6" class="rv">
+    <div class="sec-head">
+      <div class="sec-no">第6章　1回の流れ</div>
+      <h2>前・はじめ・なか・おわり・あと</h2>
+      <p class="lead">順番に意味があります。部下の議題を先に、上司の用件を後に置くのは、時間切れで部下の話が削られるのを防ぐためです。</p>
+    </div>
+    <div class="tl">
+      <div class="tl-step"><div class="tl-icon"><svg class="icon"><use href="#i-note"/></svg></div><div class="tl-body"><div class="tl-phase">前日まで</div><h3>部下が話したいことを出す</h3><p class="small">グローブの理由づけは実務的です。部下が8人いれば上司は8回準備することになるが、部下は1回で済む。部下が事前に整理すること自体が振り返りになります。慣れないうちは、上司が話題メニュー（第8章）や定番の質問（第5章）を渡します。上司は前回のメモを読み返しておきます。</p></div></div>
+      <div class="tl-step"><div class="tl-icon"><svg class="icon"><use href="#i-ear"/></svg></div><div class="tl-body"><div class="tl-phase">直前</div><h3>上司は自分の状態を確かめる</h3><p class="small">ロゲルバーグは、開始前に上司が自分の感情状態を確認することを勧めています。上司の苛立ちや焦りは、そのまま場の空気になります。通知を切る、端末を伏せることも含みます。</p></div></div>
+      <div class="tl-step"><div class="tl-icon"><svg class="icon"><use href="#i-chat"/></svg></div><div class="tl-body"><div class="tl-phase">はじめ（数分）</div><h3>近況と、今日のテーマの確認</h3><p class="small">「今日は何から話しましょうか」。最初の問いで主導権を部下に渡します。ロゲルバーグは、仕事と生活の調子を10点満点で答えてもらい、「6点なのはどうしてですか、もう少し聞かせてください」と数字を手がかりに話を広げる方法を紹介しています。</p></div></div>
+      <div class="tl-step"><div class="tl-icon"><svg class="icon"><use href="#i-loop"/></svg></div><div class="tl-body"><div class="tl-phase">なか（大半の時間）</div><h3>部下のテーマを、経験学習の順で深める</h3><p class="small">何があったか → どう受け止めたか → そこから言えることは → 次にどうするか。上司は答えを先に出さず、部下が言葉にするのを待ちます。ヤフーの実践でも、次の行動は部下が自分で思いつき、宣言することが重視されています。</p></div></div>
+      <div class="tl-step"><div class="tl-icon"><svg class="icon"><use href="#i-flag"/></svg></div><div class="tl-body"><div class="tl-phase">おわり（数分）</div><h3>上司の用件、次の一歩、支援の約束</h3><ul class="tidy small"><li>上司からの共有や依頼はここで</li><li>次にやることを<strong>部下の言葉で</strong>確認する</li><li>上司がやること（調整、資料、障害の除去）も明確にする</li></ul></div></div>
+      <div class="tl-step"><div class="tl-icon"><svg class="icon"><use href="#i-book"/></svg></div><div class="tl-body"><div class="tl-phase">あと</div><h3>記録し、約束を守り、次回につなぐ</h3><p class="small">双方が要点をメモします。グローブは、書き留めることは握手のように「約束した」という意味を持つと述べ、次の1on1でその項目を見直すことを勧めています。ロゲルバーグは、上司がメモを取ることが部下から見た1on1の評価の高さと関係していたと述べています。メモは評価面談で直近の出来事ばかりが目立つのを防ぐ記録にもなります。上司が約束した支援を実行しないと、次回から部下は話さなくなります。次の1on1は前回の一歩の振り返りから始めます。</p></div></div>
+      <div class="tl-step"><div class="tl-icon"><svg class="icon"><use href="#i-scale"/></svg></div><div class="tl-body"><div class="tl-phase">ときどき</div><h3>1on1そのものを点検する</h3><p class="small">上司は自分の1on1を実際よりも高く評価しがちです（第1章）。「この時間で役立っていること、変えたいことは？」と部下に聞く、あるいは匿名のアンケートを使う。『世界標準の1on1』も「1on1を評価する」に1章を割いています。</p></div></div>
+    </div>
+
+    <div class="card stack" style="margin-top:20px">
+      <h3>部下の側がやること<span class="bk res">『世界標準の1on1』ロゲルバーグ</span></h3>
+      <p class="small">1on1は上司だけの技術ではありません。『世界標準の1on1』には「1on1で部下がやること」の章があり、部下が準備するほど得るものが多いとされます。導入時には、この役割を部下にも説明しておきます（同書「1on1の導入を伝える」）。</p>
+      <ul class="tidy small">
+        <li>自分の短期・長期のニーズを、事前に整理しておく</li>
+        <li>困りごと、優先順位、全体の中での自分の仕事の位置づけ、成長、フィードバックについて、聞きたいことを用意する</li>
+        <li>相談するときは、丸投げではなく自分の案を添える。例：「Yを試そうと思っています。このやり方についてご意見をください」</li>
+        <li>上司が手伝ってほしいことはないかも聞いてみる</li>
+      </ul>
+      <p class="small muted">ロゲルバーグは、自分の案を持って助けを求める姿勢が、高い業績評価と関連するという研究を紹介しています（引用元の研究そのものは本リファレンスでは未確認）。<span class="badge bC">確度C</span></p>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section id="s7" class="rv">
+    <div class="sec-head">
+      <div class="sec-no">第7章　技法</div>
+      <h2>聴く・問う・伝える</h2>
+      <p class="lead">1on1の質は、上司の具体的な行動で決まります。研究で「関係志向の関わり」と呼ばれているものを、行動の単位に分解します。</p>
+    </div>
+    <div class="card stack" style="margin-bottom:16px">
+      <h3>「関係志向の関わり」の中身：5つの行動<span class="bk res">『世界標準の1on1』ロゲルバーグ</span></h3>
+      <p class="small">第3章で、欲求充足を最もよく説明したのは関係志向の関わりでした。『世界標準の1on1』は、部下の「個人的ニーズ」を満たす行動を5つにまとめています。どれも特別な労力を要するものではない、と著者は書いています。</p>
+      <div class="tbl-wrap"><table style="min-width:480px">
+        <thead><tr><th>行動</th><th>具体的には</th></tr></thead>
+        <tbody>
+          <tr><td><strong>共感して聴く</strong></td><td>返事を考えながらではなく、相手の話を吸収するために聴く。気がそれたら注意を戻す</td></tr>
+          <tr><td><strong>誠実に、透明に伝える</strong></td><td>期待と現在地を本人が分かるようにする。著者は、上司から欲しい批判的なフィードバックをもらえていないと答えた従業員が72%いた調査を紹介している</td></tr>
+          <tr><td><strong>巻き込む</strong></td><td>「Xについて、まずどう考えますか」と意見を求める。ただし、すべての決定に意見を反映できるわけではないことも正直に伝える</td></tr>
+          <tr><td><strong>親切に、支えになる</strong></td><td>成長を支えつつ、依存は生まない。説明責任と親切は両立する</td></tr>
+          <tr><td><strong>適度に弱さを見せる</strong></td><td>上司も自分の気持ちを適度に話す。部下が話しやすくなる</td></tr>
+        </tbody>
+      </table></div>
+      <p class="small muted">目指すのは、部下が「受け入れられ、尊重され、信頼され、聴いてもらえ、支えられ、心理的に安全だ」と感じる状態です。</p>
+    </div>
+    <details class="acc" open>
+      <summary><svg class="icon" style="color:var(--teal)"><use href="#i-ear"/></svg>聴く：相手の言葉を相手に返す<svg class="icon chev"><use href="#i-chev"/></svg></summary>
+      <div class="acc-body small">
+        <ul class="tidy">
+          <li><strong>要約して返す</strong>：「つまり、Aさんとの分担が曖昧なまま進んでいた、ということですね」。理解の確認と、部下自身の整理を同時に進める</li>
+          <li><strong>沈黙を待つ</strong>：考えている間の沈黙を、上司の発言で埋めない</li>
+          <li><strong>感情の言葉を拾う</strong>：「焦った」「もやもやした」が出たら、そこを一度受け止めてから先へ進む</li>
+          <li><strong>途中で正さない</strong>：事実誤認があっても、まず最後まで聞く</li>
+        </ul>
+      </div>
+    </details>
+    <details class="acc">
+      <summary><svg class="icon" style="color:var(--teal)"><use href="#i-q"/></svg>問う：開いた質問で、考える余地を渡す<svg class="icon chev"><use href="#i-chev"/></svg></summary>
+      <div class="acc-body small">
+        <p>「はい／いいえ」で終わる質問は確認には便利ですが、振り返りは起きにくくなります。グーグルは管理職研修で、目標（Goal）・現状（Reality）・選択肢（Options）・意思（Will）の順に問う<span class="term">GROWモデル</span>を使っています。</p>
+        <ul class="tidy">
+          <li>目標：「この件、どうなっていたら良いですか」</li>
+          <li>現状：「いま、どこまで進んでいますか。何が引っかかっていますか」</li>
+          <li>選択肢：「ほかにどんなやり方がありそうですか」</li>
+          <li>意思：「まず何からやってみますか。いつまでに」</li>
+        </ul>
+        <p class="muted">「なぜできなかったの？」は責める問いとして受け取られやすい。「何が難しくしていましたか」と状況に向けて問うほうが、事実が出てきます。</p>
+        <h3 style="font-size:.98rem;margin-top:6px">7つの質問<span class="bk pra">『The Coaching Habit』バンゲイ・スタニエ</span></h3>
+        <p>コーチのBungay Stanierは、助言を急ぐ代わりに使う7つの質問を挙げています（日本語版『リーダーが覚えるコーチングメソッド』）。和訳は本リファレンスによるものです。</p>
+        <ol class="tidy">
+          <li>「いま、気になっていることは？」（口火を切る）</li>
+          <li>「ほかには？」（すぐに助言せず、もう一度待つ）</li>
+          <li>「この件で、あなたにとって本当の課題は何ですか」（最初の話は症状かもしれない）</li>
+          <li>「あなたは何を望んでいますか」</li>
+          <li>「私に何ができますか」（相手が望む役割を確かめる。引き受けるかは別）</li>
+          <li>「これを引き受けるなら、何をやめますか」</li>
+          <li>「今日の話で、何がいちばん役に立ちましたか」（終わりに学びを言葉にしてもらう）</li>
+        </ol>
+        <p class="muted">最後の質問は、経験学習の「教訓を言葉にする」段階（第3章）をそのまま促す問いです。2番目の「ほかには？」は、グローブが40年前に書いた原則とも重なります。部下が言いたいことを言い終えたと思ったら、もう一つ質問する。込み入った話は、そこから出てくることが多いからです。</p>
+        <h3 style="font-size:.98rem;margin-top:6px">謙虚に問いかける<span class="bk res">『問いかける技術』シャイン</span></h3>
+        <p>組織心理学者のシャインは、答えを知らないことを相手から引き出す問いを「謙虚な問いかけ」と呼び、ほかの問いと区別しました。</p>
+        <div class="rx">
+          <b class="ok">謙虚な問い</b><span>「何があったんですか」「例を教えてください」。話の中身を相手に委ねる</span>
+          <b>診断的な問い</b><span>「そう感じたきっかけは？」。必要な場面もあるが、相手の考えを特定の方向へ導く</span>
+          <b>対決的な問い</b><span>「それは○○だったからでは？」。問いの形をした自分の意見</span>
+          <b class="ok">関係を問う</b><span>「いまの私の言い方、気になりましたか」。会話そのものに目を向ける</span>
+        </div>
+        <p class="muted">シャインは、地位が高いほど「話す」側に回りやすく、謙虚に問うことが難しくなると指摘しています。</p>
+      </div>
+    </details>
+    <details class="acc">
+      <summary><svg class="icon" style="color:var(--teal)"><use href="#i-scale"/></svg>伝える：フィードバックは「行動と状況」に向ける<svg class="icon chev"><use href="#i-chev"/></svg></summary>
+      <div class="acc-body small">
+        <p>フィードバックは3分の1超の場面で逆効果だった、というメタ分析（第4章）の説明は「注意の向き先」です。課題ややり方に注意が向けば効果が出やすく、「自分はダメな人間か」という自己評価に注意が向くと効果が落ちます。</p>
+        <div class="rx">
+          <b>避けたい</b><span>「あなたは段取りが悪い」（人物への評価）</span>
+          <b class="ok">向けたい</b><span>「昨日の面談記録が締切に間に合わなかった。何が詰まっていたか一緒に見たい」（具体的な行動と状況）</span>
+          <b>避けたい</b><span>「Bさんはもっとできていたよ」（他者との比較）</span>
+          <b class="ok">向けたい</b><span>「先月と比べて、記録の抜けが減っている」（本人の過去との比較）</span>
+        </div>
+        <p class="muted">承認（うまくいったこと）は、Gallupの調査で「意味のある会話」の筆頭に挙がった要素です。改善点だけを扱う1on1は、部下にとって意味を感じにくい時間になります。</p>
+        <h3 style="font-size:.98rem;margin-top:6px">SBIで事実を集める<span class="bk res">『フィードバック入門』中原淳</span></h3>
+        <p>中原はフィードバックを「耳の痛いことを部下にしっかりと伝え、成長を立て直すこと」とし、関連書では、行動の結果を伝える「情報通知」と、本人が行動計画を立てるのを助ける「立て直し」の2つの働きに分けています。伝える前に、次の3点で事実をそろえます。</p>
+        <div class="rx">
+          <b class="ok">S 状況</b><span>いつ、どの場面で（例：火曜の午後、利用者面談の記録作成で）</span>
+          <b class="ok">B 行動</b><span>実際に何をしたか（例：記録の提出が翌日になった）</span>
+          <b class="ok">I 影響</b><span>周囲や仕事にどう影響したか（例：申し送りが一日遅れ、担当交代の準備がずれた）</span>
+        </div>
+        <p>面談は、信頼の確保（人目のない場所で、目的を先に伝える） → 事実を伝える → 本人の腹落ち → 原因を一緒に探り、行動計画を立てる → 期待を伝える、の順に進めます（『フィードバック入門』の要約と、同じ著者の『はじめてのリーダーのための 実践！フィードバック』の紹介記事をもとに整理）。</p>
+        <p class="muted">初版は主に耳の痛いフィードバックを扱っており、2025年8月の増補改訂版で強みを伸ばす「ポジティブフィードバック」の章が加わりました。</p>
+        <h3 style="font-size:.98rem;margin-top:6px">率直さの4象限<span class="bk pra">『GREAT BOSS』キム・スコット</span></h3>
+        <p>スコットは、「相手を大切に思うこと」と「率直に指摘すること」を同時に満たす状態をRadical Candorと呼びました。マスを選ぶと説明が出ます。象限名の和訳は本リファレンスによるものです。</p>
+        <div class="quad" id="quad" role="group" aria-label="率直さの4象限">
+          <div class="ylab">相手を大切に思う →</div>
+          <button type="button" class="qcell" data-q="1">破滅的な共感<small>思いやりはあるが言わない</small></button>
+          <button type="button" class="qcell good" data-q="0" aria-pressed="true">徹底した率直さ<small>大切に思い、はっきり言う</small></button>
+          <button type="button" class="qcell" data-q="3">操作的な不誠実<small>大切にもせず、言いもしない</small></button>
+          <button type="button" class="qcell" data-q="2">不快な攻撃<small>言うが、大切にしていない</small></button>
+          <div class="xlab">率直に指摘する →</div>
+        </div>
+        <p id="quadText" aria-live="polite"></p>
+        <p class="muted">スコット自身は、まず上司が部下からの率直な意見を求めることから始めるべきだとしています。邦題に「ずけずけ言う力」とありますが、指摘は業務上必要かつ相当な範囲の内側で行います（パワハラ指針の定義、第10章）。</p>
+      </div>
+    </details>
+    <details class="acc">
+      <summary><svg class="icon" style="color:var(--teal)"><use href="#i-shield"/></svg>受け取る：フィードバックが届かない3つの理由<svg class="icon chev"><use href="#i-chev"/></svg></summary>
+      <div class="acc-body small">
+        <p><span class="bk pra">『Thanks for the Feedback』ストーン＆ヒーン</span><br>この本は、受け取る側の視点からフィードバックを扱った本です。人がフィードバックをはねつけるきっかけを3つに分けています。上司が部下に伝えるときにも、上司が部下から1on1の感想を聞くときにも使えます。</p>
+        <div class="rx">
+          <b>内容への反発</b><span>「それは事実と違う」「役に立たない」と感じる。まず相手が何を見てそう言っているのかを確かめる</span>
+          <b>関係への反発</b><span>内容よりも「誰に言われたか」に反応する。関係の話と内容の話を分けて扱う</span>
+          <b>自己像への脅威</b><span>「自分は○○な人間だ」という核心が揺らぐ。第4章の「注意が自分自身に向くと効果が落ちる」という知見と重なる</span>
+        </div>
+        <p>同書は、フィードバックを<strong>承認</strong>（認めること）、<strong>助言</strong>（良くするための提案）、<strong>評価</strong>（現在地の判定）の3種類に分けます。相手が承認を求めているときに助言を返す、といったずれが行き違いを生みます。1on1では「いま欲しいのはどれですか」と聞いてしまうのも一つの方法です。</p>
+      </div>
+    </details>
+    <details class="acc">
+      <summary><svg class="icon" style="color:var(--teal)"><use href="#i-sprout"/></svg>先に答えを出さない<svg class="icon chev"><use href="#i-chev"/></svg></summary>
+      <div class="acc-body small">
+        <p>ヤフーで1on1を導入した本間浩輔<span class="bk pra">『ヤフーの1on1』</span>は、上司の役割を、部下が求める答えを一緒に探す「壁打ち相手」と表現しています。考えている最中の部下に「こんな考えもある」と選択肢を示すのが理想で、指示や査定の時間になっているなら、まず上司の側の意識を変えるべきだとしています。</p>
+        <p>ロゲルバーグは「部下の案が実行可能で、外れても大きな損害がないなら、自分の案のほうが少し良くても部下の案で行く」ことを勧めています。信頼と当事者意識が育つからです。</p>
+        <p>上司が解決策を示せば、その場は早く終わります。しかし部下は「考える」段階を飛ばし、自律性（自分で選べている感覚）も満たされません。部下が自分で言葉にした行動は、実行される見込みも高いと考えられています（自己決定理論からの推論であり、1on1で直接検証された結果ではありません）。</p>
+        <p class="muted">ただし、経験が浅く手がかりがない段階では、情報や手本を渡すことが支援になります。グローブも、部下の習熟度によって関わり方を変えるべきだとしました。「教えない」は原則ではなく、相手の段階に応じた選択です。</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- 8 -->
+  <section id="s8" class="rv">
+    <div class="sec-head">
+      <div class="sec-no">第8章　話題のメニュー</div>
+      <h2>何を話すか迷ったときに</h2>
+      <p class="lead">「話すことがない」は、部下からもよく出る困りごとです。メニューを先に共有しておくと、部下がテーマを選びやすくなります。カテゴリを選ぶと問いの例が出ます。</p>
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="話題のカテゴリ"></div>
+    <ul class="qlist" id="qlist" style="margin-top:14px" aria-live="polite"></ul>
+    <p class="small muted" style="margin-top:12px">毎回すべてを扱う必要はありません。キャリアや成長の話は、月に一度程度意識して入れる、という扱いが研究でも例示されています。</p>
+
+    <div class="card stack" style="margin-top:18px">
+      <h3>話題の偏りを見る：すり合わせ9ボックス<span class="bk pra">『対話型マネジャー』世古詞一</span></h3>
+      <p class="small">世古詞一『対話型マネジャー』は、対話を「業務・組織・個人の認識をすり合わせること」と定義し、3つのレベルと3つの時間軸を掛け合わせた9つの箱を示しました。業務は「成果」、組織は方向性への「共感」、個人は「成長」に焦点を当てます。3つがつながらなくなると意欲が下がり、離職につながると著者は指摘しています。マスを選ぶと問いの例が出ます。</p>
+      <div class="nine-wrap"><div class="nine" id="nine" role="group" aria-label="すり合わせ9ボックス"></div></div>
+      <ul class="qlist" id="nineQ" aria-live="polite"></ul>
+      <p class="small muted">要約で確認できたのは枠組みと「業務×現在」（業務上の不安を、潜在的なもやもやも含めて言葉にして解消する）の内容のみです。ほかのマスの問いは、本リファレンスが作成した例です。直近の1on1がどのマスに偏っていたかを振り返る道具としても使えます。</p>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section id="s9" class="rv">
+    <div class="sec-head">
+      <div class="sec-no">第9章　よくある失敗</div>
+      <h2>うまくいかない1on1の8つの型</h2>
+      <p class="lead">個々の上司の資質ではなく、仕組みの設計で起きる失敗が多くを占めます。症状と処方を対にしています。</p>
+    </div>
+    <div id="fails"></div>
+  </section>
+
+  <!-- 10 -->
+  <section id="s10" class="rv">
+    <div class="sec-head">
+      <div class="sec-no">第10章　境界線</div>
+      <h2>踏み込みすぎない、抱え込まない</h2>
+      <p class="lead">1on1は個人的な話が出やすい場です。だからこそ、どこまで聞いてよいか、聞いたあとどうするかの線を、あらかじめ持っておく必要があります。</p>
+    </div>
+
+    <div class="card stack">
+      <h3>線1　私的なことへの踏み込み</h3>
+      <p class="small">厚生労働省のパワーハラスメント指針は、6つの類型の一つに「個の侵害（私的なことに過度に立ち入ること）」を挙げています。部下を気づかうつもりの質問でも、立場の差があるため断りにくいことを前提にします。次の例がどちらに当たると考えられるか、選んでみてください。</p>
+      <div class="quiz" id="quiz"></div>
+      <p class="small muted">例は厚生労働省の資料に示された「該当する／しないと考えられる例」を基にしています。実際の判断は個別の事情によります。</p>
+    </div>
+
+    <div class="card stack" style="margin-top:16px">
+      <h3>線2　心の不調のサインに気づいたとき</h3>
+      <p class="small">厚生労働省の「労働者の心の健康の保持増進のための指針」は、メンタルヘルスケアを4つに分け、その一つを管理監督者による<span class="term">ラインによるケア</span><span class="plain">日常的に部下を見ている上司が、変化に気づき、つなぐこと</span>としています。上司の役割は診断や治療ではなく、気づいて、聴いて、つなぐことです。</p>
+      <div class="flow">
+        <div class="flow-step"><svg class="icon" style="color:var(--teal)"><use href="#i-ear"/></svg><div class="small"><strong>気づく</strong>：遅刻や欠勤の増加、ミスの急増、表情や口数の変化など、その人の「いつもと違う」</div></div>
+        <div class="flow-arrow" aria-hidden="true">↓</div>
+        <div class="flow-step"><svg class="icon" style="color:var(--teal)"><use href="#i-chat"/></svg><div class="small"><strong>聴く</strong>：観察した事実を伝え、心配していると言葉にする。原因を決めつけない、病名を口にしない</div></div>
+        <div class="flow-arrow" aria-hidden="true">↓</div>
+        <div class="flow-step"><svg class="icon" style="color:var(--teal)"><use href="#i-handoff"/></svg><div class="small"><strong>つなぐ</strong>：本人の了解を得て、組織の相談窓口や産業保健の担当者など、決められた経路へ。上司が一人で抱えない</div></div>
+      </div>
+      <div class="callout warn small"><strong>急いでつなぐ場面（実務上の原則）：</strong>命や安全に関わる発言があったときは、1on1の中で完結させず、その日のうちに組織の決められた経路で共有してください。</div>
+    </div>
+
+    <div class="card stack" style="margin-top:16px">
+      <h3>線3　「ここだけの話」の扱い</h3>
+      <ul class="tidy small">
+        <li><strong>無条件の秘密を約束しない</strong>：「誰にも言わない」と約束すると、安全に関わる情報を受け取ったときに約束を破ることになる。「基本的にはここだけにするが、あなたや誰かの安全に関わるときは相談させてほしい」と最初に伝えておく</li>
+        <li><strong>評価への使い方を透明にする</strong>：1on1で聞いた弱音が査定に使われると、次から本音は出なくなる。評価面談とは場を分ける</li>
+        <li><strong>機微な情報を本人の了解なく広げない</strong>：病歴、性的指向・性自認などを了解なく他者に伝えることは、指針で「個の侵害」に当たると考えられる例として示されている</li>
+      </ul>
+      <p class="small muted">この線3は、上の指針と対人援助職の実務上の原則を組み合わせた整理です。研究による効果検証ではありません。</p>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section id="s11" class="rv">
+    <div class="sec-head">
+      <div class="sec-no">第11章　批判的に見る</div>
+      <h2>1on1は万能ではない</h2>
+      <p class="lead">1on1の効果を語る言説の多くは、楽観的に聞こえます。研究を順に読むと、少なくとも次の留保が必要です。</p>
+    </div>
+    <div class="band stack">
+      <div class="stack" style="gap:6px"><h3>1. 根拠の多くは相関と自己報告</h3><p class="small muted">1on1を受けた人ほどエンゲージメントが高い、という結果は、もともと関係の良い上司と部下ほど1on1をよく行う、という逆向きの説明と区別しにくい。1on1そのものを無作為に割り付けて比較した研究は、今回調べた範囲では見当たりませんでした。</p></div>
+      <div class="stack" style="gap:6px"><h3>2. 回数を増やしても、質が伴わなければ効かない</h3><p class="small muted">頻度単独の寄与ははっきりせず、長すぎる高頻度の1on1は国内調査で最も成長度が低い形でした。「1on1をやっている」こと自体を成果指標にすると、形骸化します。</p></div>
+      <div class="stack" style="gap:6px"><h3>3. 個人の技量だけの問題ではない</h3><p class="small muted">国内調査で改善策の1位は、上司・部下とも「人材育成を重視する組織風土」でした。部下が多すぎる、育成が評価されない、研修がない、という条件下で個々の上司に質を求めても続きません。</p></div>
+      <div class="stack" style="gap:6px"><h3>4. 「効果がない」の中身を分ける</h3><p class="small muted">法政大学の坂爪洋美は、「効果がない」という声には放置してよいものと対応すべきものが混ざっており、分解が必要だと指摘しています。たとえば、希望が通らずに意欲が下がった部下の不満は、1on1の設計の問題とは限りません。</p></div>
+      <div class="stack" style="gap:6px"><h3>5. 管理の道具になる危険</h3><p class="small muted">1on1の記録や業務データを監視に使えば、心理的安全性という前提が崩れます。目的が「部下の状況の把握」だけに傾くと、部下にとっては報告の場が一つ増えたにすぎません。</p></div>
+      <div class="stack" style="gap:6px"><h3>6. 海外の知見をそのまま持ち込まない</h3><p class="small muted">主要な研究は米国中心です。上司に意見を言うことへの抵抗感や、上下関係の感じ方には文化差があり得ます（ただし直接比較した研究は少ない）。国内調査の研究員インタビューでも、部下から「何を相談すればよいのか思い当たらない」という声が紹介されており、部下がテーマを出す形は練習なしには定着しにくいと考えられます。</p></div>
+    </div>
+    <div class="band stack" style="margin-top:12px">
+      <div class="stack" style="gap:6px"><h3>7. 書籍の主張と研究の知見を混ぜない</h3><p class="small muted">1on1の本の多くは、著者の実務経験に基づく枠組みです（本文では<span class="bk pra">実務家の著作</span>の印）。7つの質問、4象限、9ボックスといった枠組みは整理の道具として有用ですが、それ自体の効果を比較検証した研究は、今回調べた範囲では見当たりませんでした。研究者が書いた『世界標準の1on1』も、根拠の中心は著者自身の調査です。「本に書いてある」と「検証されている」は別のこととして扱います。</p></div>
+    </div>
+    <div class="callout note small" style="margin-top:16px"><strong>本間浩輔氏（ヤフーで1on1を導入）の立場</strong><span class="bk pra">『ヤフーの1on1』</span><strong>：</strong>1on1の目的を一つに限定するとほかの効果を否定しかねないとして、「目的」よりも「効果」で説明することを提案しています。一方で、毎回雑談で終わる1on1は成長の観点でマイナスだとも述べています。目的を固めすぎず、しかし何でもありにもしない、という均衡です。</div>
+  </section>
+
+  <!-- 12 -->
+  <section id="s12" class="rv">
+    <div class="sec-head">
+      <div class="sec-no">第12章　セルフチェック</div>
+      <h2>次の1on1の前に</h2>
+      <p class="lead">当てはまるものにチェックしてください。点数は自分の状態を見るためのもので、評価基準ではありません。この画面を閉じると記録は消えます。</p>
+    </div>
+    <div class="check" id="check"></div>
+    <div class="score" aria-live="polite"><span id="scoreMsg">チェックすると、目安が表示されます</span><strong id="scoreNum">0 / 14</strong></div>
+  </section>
+
+  <!-- sources -->
+  <section id="src" class="rv">
+    <div class="sec-head">
+      <div class="sec-no">出典</div>
+      <h2>情報ソース</h2>
+      <p class="small muted">リンク先はすべて外部サイトです。2026年10月19日にファクトチェックを行い、確認できた範囲を本文に反映しました。</p>
+    </div>
+    <ol class="src">
+      <li>Rogelberg, S. G. (2022). Make the Most of Your One-on-One Meetings. <i>Harvard Business Review</i>, Nov–Dec. <a href="https://hbr.org/2022/11/make-the-most-of-your-one-on-one-meetings" target="_blank" rel="noopener">hbr.org</a></li>
+      <li>Rogelberg, S. G. (2024). <i>Glad We Met: The Art and Science of 1:1 Meetings</i>. Oxford University Press.（調査概要の紹介記事）<a href="https://qz.com/emails/quartz-at-work/1851155285/how-to-have-better-one-on-ones" target="_blank" rel="noopener">qz.com</a></li>
+      <li>Flinchum, J. R. (2022). <i>A New Approach to Promote Employee Engagement: One-on-One Meetings Between Managers and Direct Reports</i>（博士論文, UNC Charlotte）. <a href="https://ninercommons.charlotte.edu/record/2294/files/Flinchum_uncc_0694D_13278.pdf" target="_blank" rel="noopener">ninercommons.charlotte.edu</a></li>
+      <li>パーソル総合研究所「部下の成長支援を目的とした1on1ミーティングに関する定量調査」（2025年2月発表）調査概要の転載記事 <a href="https://roumu.com/archives/126241.html" target="_blank" rel="noopener">roumu.com</a> ／ 研究員インタビュー <a href="https://www.j-cast.com/2025/03/06502196.html" target="_blank" rel="noopener">j-cast.com</a> ／ 頻度・時間別の結果 <a href="https://dime.jp/genre/1944270/" target="_blank" rel="noopener">dime.jp</a></li>
+      <li>Gallup (2023, 2026更新). A Great Manager's Most Important Habit. <a href="https://www.gallup.com/workplace/505370/great-manager-important-habit.aspx" target="_blank" rel="noopener">gallup.com</a></li>
+      <li>Google re:Work. Coach managers to coach（Project Oxygen, GROWモデル）. <a href="https://rework.withgoogle.com/en/guides/managers-coach-managers-to-coach" target="_blank" rel="noopener">rework.withgoogle.com</a> ／ 社内分析担当者の講演報道 <a href="https://venturebeat.com/business/people-analytics-google-hr" target="_blank" rel="noopener">venturebeat.com</a></li>
+      <li>Singer-Velush, N., Sherman, K., &amp; Anderson, E. (2020). Microsoft Analyzed Data on Its Newly Remote Workforce. <i>Harvard Business Review</i>. <a href="https://hbr.org/2020/07/microsoft-analyzed-data-on-its-newly-remote-workforce" target="_blank" rel="noopener">hbr.org</a></li>
+      <li>Edmondson, A. (1999). Psychological Safety and Learning Behavior in Work Teams. <i>Administrative Science Quarterly</i>, 44(2), 350–383. <a href="https://doi.org/10.2307/2666999" target="_blank" rel="noopener">doi.org/10.2307/2666999</a></li>
+      <li>Kluger, A. N., &amp; DeNisi, A. (1996). The effects of feedback interventions on performance. <i>Psychological Bulletin</i>, 119(2), 254–284. <a href="https://scholars.huji.ac.il/node/1802" target="_blank" rel="noopener">scholars.huji.ac.il</a></li>
+      <li>Kolb, D. A. (1984). <i>Experiential Learning</i>. Prentice Hall.（概説）<a href="https://en.wikipedia.org/wiki/Kolb%27s_experiential_learning" target="_blank" rel="noopener">en.wikipedia.org</a></li>
+      <li>Grove, A. S. (1983). <i>High Output Management</i>. Random House.（1on1に関する一節）<a href="https://www.goodreads.com/quotes/10226516-a-key-point-about-a-one-on-one-it-should-be-regarded" target="_blank" rel="noopener">goodreads.com</a></li>
+      <li>ATD. 70:20:10: Where Is the Evidence? <a href="https://www.td.org/insights/70-20-10-where-is-the-evidence" target="_blank" rel="noopener">td.org</a></li>
+      <li>本間浩輔『ヤフーの1on1』ダイヤモンド社（要約）<a href="https://flierinc.com/summary/1222" target="_blank" rel="noopener">flierinc.com/summary/1222</a> ／ 本間浩輔氏の著書の要約（目的と70:20:10の紹介） <a href="https://www.flierinc.com/summary/4166" target="_blank" rel="noopener">flierinc.com/summary/4166</a> ／ 目的と効果に関する記事 <a href="https://diamond.jp/articles/-/362673" target="_blank" rel="noopener">diamond.jp</a> ／ 本間浩輔・吉澤幸太『1on1ミーティング』 <a href="https://www.diamond.co.jp/book/9784478109977.html" target="_blank" rel="noopener">diamond.co.jp</a></li>
+      <li>厚生労働省 茨城労働局「パワーハラスメントの6類型」 <a href="https://jsite.mhlw.go.jp/ibaraki-roudoukyoku/yokuaru_goshitsumon/shurouchu/worker_b/power_harassment.html" target="_blank" rel="noopener">jsite.mhlw.go.jp</a> ／ 「個の侵害」の該当・非該当例の解説 <a href="https://www.kaiketsu-j.com/trouble/10186/" target="_blank" rel="noopener">kaiketsu-j.com</a></li>
+      <li>厚生労働省 こころの耳「労働者の心の健康の保持増進のための指針」 <a href="https://kokoro.mhlw.go.jp/glossaries/word-1691" target="_blank" rel="noopener">kokoro.mhlw.go.jp</a> ／ 4つのケアの原典発表（2000年） <a href="https://www.mhlw.go.jp/www2/kisya/kijun/20000809_02_k/20000809_02_k.html" target="_blank" rel="noopener">mhlw.go.jp</a></li>
+      <li>Rogelberg, S. G. 書籍紹介記事（本人執筆の要約）<a href="https://nextbigideaclub.com/magazine/unlocking-potential-11-meetings-bookbite/47468/" target="_blank" rel="noopener">nextbigideaclub.com</a></li>
+      <li>Microsoft社内分析の要約（ハーバード・ビジネススクール授業サイト）<a href="https://d3.harvard.edu/platform-peopleanalytics/submission/microsoft-analyzed-data-on-its-newly-remote-workforce/" target="_blank" rel="noopener">d3.harvard.edu</a></li>
+      <li>厚生労働省 あかるい職場応援団「パワハラの6類型」 <a href="https://www.no-harassment.mhlw.go.jp/foundation/harassment_list/power-hara" target="_blank" rel="noopener">no-harassment.mhlw.go.jp</a> ／ 配慮目的の聞き取りは非該当とする労働局の説明（労働新聞, 2020年） <a href="https://www.rodo.co.jp/news/88646/" target="_blank" rel="noopener">rodo.co.jp</a></li>
+      <li>ロゲルバーグ『世界標準の1on1』書誌・目次 <a href="https://www.kinokuniya.co.jp/f/dsg-08-EK-2138226" target="_blank" rel="noopener">kinokuniya.co.jp</a> ／ 著者の番組出演回のショーノート（アジェンダの2方式、スキップレベル） <a href="https://coachingforleaders.com/podcast/how-to-structure-one-on-one-meetings-steven-rogelberg/" target="_blank" rel="noopener">coachingforleaders.com</a> ／ 部下の個人的ニーズを満たす5つの行動（原書の抜粋） <a href="https://startupnation.com/manage-your-business/what-smart-leaders-do-to-meet-the-personal-needs-of-others/" target="_blank" rel="noopener">startupnation.com</a> ／ 10点満点の確認と部下の役割（著者インタビュー） <a href="https://theswitchboard.substack.com/p/how-to-make-the-most-of-a-11-meeting" target="_blank" rel="noopener">theswitchboard.substack.com</a> ／ メモと評価面談（著者寄稿） <a href="https://www-2.rotman.utoronto.ca/insightshub/leadership-career-development/one-on-one-meetings" target="_blank" rel="noopener">rotman.utoronto.ca</a></li>
+      <li>世古詞一『対話型マネジャー』書誌 <a href="https://www.kinokuniya.co.jp/f/dsg-08-EK-0867884" target="_blank" rel="noopener">kinokuniya.co.jp</a> ／ 要約 <a href="https://www.flierinc.com/summary/2415" target="_blank" rel="noopener">flierinc.com/summary/2415</a></li>
+      <li>中原淳『フィードバック入門』要約 <a href="https://www.flierinc.com/summary/1160" target="_blank" rel="noopener">flierinc.com/summary/1160</a> ／ 面談の5ステップ（同著者の関連書の紹介） <a href="https://www.lifehacker.jp/article/171113_book_to_read/" target="_blank" rel="noopener">lifehacker.jp</a> ／ 増補改訂版の発売 <a href="https://newscast.jp/news/9107644" target="_blank" rel="noopener">newscast.jp</a></li>
+      <li>シャイン『問いかける技術』書誌 <a href="https://www.kinokuniya.co.jp/f/dsg-01-9784862761712" target="_blank" rel="noopener">kinokuniya.co.jp</a> ／ 問いの4つの型の解説 <a href="https://www.mindtools.com/agu8wyt/humble-inquiry" target="_blank" rel="noopener">mindtools.com</a></li>
+      <li>エドモンドソン『恐れのない組織』書誌 <a href="https://ndlsearch.ndl.go.jp/books/R100000002-I031236445" target="_blank" rel="noopener">ndlsearch.ndl.go.jp</a></li>
+      <li>スコット『GREAT BOSS』書誌 <a href="https://www.hanmoto.com/bd/isbn/9784492046418" target="_blank" rel="noopener">hanmoto.com</a> ／ 4象限の解説（スタンフォード大学経営大学院） <a href="https://gsb.stanford.edu/insights/radical-candor-communication-shift-can-transform-your-career" target="_blank" rel="noopener">gsb.stanford.edu</a></li>
+      <li>Bungay Stanier, M. (2016). <i>The Coaching Habit</i>. 7つの質問の要約 <a href="https://www.ybrikman.com/blog/2022/05/09/the-coaching-habit/" target="_blank" rel="noopener">ybrikman.com</a> ／ 日本語版 <a href="https://audible.com/pd/7-Audiobook/B09Q86KZ7L" target="_blank" rel="noopener">audible.com</a></li>
+      <li>Stone, D., &amp; Heen, S. (2014). <i>Thanks for the Feedback</i>. 要約 <a href="https://www.actionablebooks.com/summaries/thanks-for-the-feedback" target="_blank" rel="noopener">actionablebooks.com</a></li>
+      <li>坂爪洋美「1on1も“組立て”を」労働新聞（2026年9月） <a href="https://www.rodo.co.jp/series/225498/" target="_blank" rel="noopener">rodo.co.jp</a></li>
+      <li>Grove『High Output Management』の1on1に関する推奨（長さ・頻度・質問・記録） <a href="https://getlighthouse.com/blog/high-output-management" target="_blank" rel="noopener">getlighthouse.com</a></li>
+      <li>本間浩輔「週1回30分・ヤフー流の1on1を試してみる」東洋経済オンライン <a href="https://toyokeizai.net/articles/-/879335" target="_blank" rel="noopener">toyokeizai.net</a></li>
+      <li>Edmondson, A. Building a Psychologically Safe Workplace（4つのゾーンの解説資料, Australian Sports Commission） <a href="https://www.ausport.gov.au/__data/assets/pdf_file/0004/1158997/4.-Building-a-Psychologically-Safe-Environment_User-Guide.pdf" target="_blank" rel="noopener">ausport.gov.au</a></li>
+    </ol>
+
+    <h3 style="margin-top:28px;margin-bottom:10px">本文で参照した書籍</h3>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>書籍</th><th>書誌</th><th>著者の立場</th></tr></thead>
+      <tbody>
+        <tr><td>世界標準の1on1　科学的に正しい「対話の技術」のすべて</td><td>ロゲルバーグ著、本多明生訳、ディスカヴァー・トゥエンティワン、2025年（原書 <i>Glad We Met</i>, 2024年）</td><td><span class="bk res">研究者</span></td></tr>
+        <tr><td>ヤフーの1on1</td><td>本間浩輔著、ダイヤモンド社（増補改訂版あり）</td><td><span class="bk pra">実務家</span></td></tr>
+        <tr><td>対話型マネジャー</td><td>世古詞一著、日本能率協会マネジメントセンター、2020年</td><td><span class="bk pra">実務家</span></td></tr>
+        <tr><td>フィードバック入門</td><td>中原淳著、PHPビジネス新書、2017年（増補改訂版 2025年）</td><td><span class="bk res">研究者</span></td></tr>
+        <tr><td>問いかける技術</td><td>シャイン著、金井壽宏監訳、原賀真紀子訳、英治出版、2014年（原書 2013年）</td><td><span class="bk res">研究者</span></td></tr>
+        <tr><td>恐れのない組織</td><td>エドモンドソン著、野津智子訳、英治出版、2021年（原書 2018年）</td><td><span class="bk res">研究者</span></td></tr>
+        <tr><td>GREAT BOSS</td><td>キム・スコット著、関美和訳、東洋経済新報社（原書 <i>Radical Candor</i>, 2017年）</td><td><span class="bk pra">実務家</span></td></tr>
+        <tr><td>The Coaching Habit</td><td>バンゲイ・スタニエ著、2016年（日本語版『リーダーが覚えるコーチングメソッド』）</td><td><span class="bk pra">実務家</span></td></tr>
+        <tr><td>Thanks for the Feedback</td><td>ストーン、ヒーン著、2014年</td><td><span class="bk pra">実務家</span></td></tr>
+        <tr><td>High Output Management</td><td>グローブ著、1983年</td><td><span class="bk pra">実務家</span></td></tr>
+      </tbody>
+    </table></div>
+    <p class="small muted" style="margin-top:8px">研究者の著作でも、本の中の推奨すべてが検証済みというわけではありません。根拠の強さは本文の確度バッジで判断してください。</p>
+  </section>
+</main>
+
+<footer><div class="wrap">岡村雄一郎</div></footer>
+
+<script>
+(function(){
+  // nav
+  var navBtns=[].slice.call(document.querySelectorAll('.nav button'));
+  function scrollToSection(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}
+  navBtns.forEach(function(b){b.addEventListener('click',function(){scrollToSection(b.getAttribute('data-target'));});});
+  var prog=document.getElementById('progress');
+  var secs=navBtns.map(function(b){return document.getElementById(b.getAttribute('data-target'));});
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    prog.style.width=(h>0?Math.min(100,window.scrollY/h*100):0)+'%';
+    var cur=0;secs.forEach(function(s,i){if(s&&s.getBoundingClientRect().top<120)cur=i;});
+    navBtns.forEach(function(b,i){
+      var on=i===cur;
+      if(on&&!b.classList.contains('on')){b.classList.add('on');try{b.scrollIntoView({block:'nearest',inline:'nearest'});}catch(e){}}
+      else if(!on)b.classList.remove('on');
+    });
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  // reveal (visible at rest)
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.08});
+    document.querySelectorAll('.rv').forEach(function(el){if(el.getBoundingClientRect().top>window.innerHeight)io.observe(el);});
+  }
+
+  // ch1 gap
+  var gap={boss:[["部下が多く話した",42.5,"var(--teal)"],["自分（上司）が多く話した",36.2,"var(--amber)"]],
+           member:[["上司が多く話した",36.6,"var(--amber)"],["自分（部下）が多く話した",31.4,"var(--teal)"]]};
+  var gb=document.getElementById('gapBars'),bB=document.getElementById('gapBoss'),bM=document.getElementById('gapMember');
+  function drawGap(k){
+    gb.innerHTML=gap[k].map(function(r){return '<div class="stack" style="gap:4px"><div class="small" style="display:flex;justify-content:space-between;gap:8px"><span>'+r[0]+'</span><span class="num">'+r[1]+'%</span></div><div class="meter-bar"><span style="width:'+(r[1]/50*100)+'%;background:'+r[2]+'"></span></div></div>';}).join('')+'<p class="small muted">バーの全幅＝50%</p>';
+    bB.setAttribute('aria-pressed',k==='boss');bM.setAttribute('aria-pressed',k==='member');
+  }
+  bB.addEventListener('click',function(){drawGap('boss');});bM.addEventListener('click',function(){drawGap('member');});drawGap('boss');
+
+  // kolb
+  var kolb=[
+    {t:'具体的な経験',d:'仕事の中で起きた出来事。1on1の素材になる。',q:['この2週間で、印象に残った場面はどれですか','うまくいった／いかなかった、どちらでも一つ挙げるなら？']},
+    {t:'振り返り',d:'出来事を、少し距離をおいて見直す段階。忙しいと最も抜ける。1on1の中心。',q:['そのとき、何が起きていたと思いますか','相手からはどう見えていたでしょう','自分はどう感じていましたか']},
+    {t:'教訓を言葉にする',d:'振り返りから、次にも使える「自分なりのコツ」を取り出す段階。',q:['そこから言えることを一言にすると？','似た場面が来たら、何を意識しますか']},
+    {t:'次に試す',d:'教訓を次の仕事で試す段階。試した結果が、次の「経験」になる。',q:['次の機会に、まず何を試しますか','そのために、私（上司）にできることはありますか']}
+  ];
+  var kp=document.getElementById('kolbPanel'),kn=[].slice.call(document.querySelectorAll('.kolb-node'));
+  function showK(i){kn.forEach(function(n,j){n.classList.toggle('on',i===j);});var k=kolb[i];
+    kp.innerHTML='<h3 style="margin-bottom:6px">'+k.t+'</h3><p class="small" style="margin-bottom:10px">'+k.d+'</p><ul class="qlist">'+k.q.map(function(x){return '<li>「'+x+'」</li>';}).join('')+'</ul>';}
+  kn.forEach(function(n){var i=+n.getAttribute('data-k');n.addEventListener('click',function(){showK(i);});n.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();showK(i);}});});
+  showK(0);
+
+  // evidence filter
+  var fb=[].slice.call(document.querySelectorAll('[data-f]')),evs=[].slice.call(document.querySelectorAll('#evList .ev'));
+  fb.forEach(function(b){b.addEventListener('click',function(){var f=b.getAttribute('data-f');fb.forEach(function(x){x.setAttribute('aria-pressed',x===b);});evs.forEach(function(e){e.hidden=!(f==='all'||e.getAttribute('data-g')===f);});});});
+
+  // dot plot
+  var pairs=[["話す割合（部下が多い vs 上司が多い）",6.8,6.3],["テーマ設定（部下が決める vs 上司が決める）",6.9,6.4],["月2〜3回以上：30分〜1時間未満 vs 1時間以上",7.4,6.0]];
+  var mn=5.5,mx=7.5;function px(v){return ((v-mn)/(mx-mn)*100)+'%';}
+  document.getElementById('dots').innerHTML=pairs.map(function(p){return '<div class="dot-row"><div class="dot-label">'+p[0]+'</div><div class="track"><span class="dot lo" style="left:'+px(p[2])+'"></span><span class="dot-val" style="left:'+px(p[2])+';top:6px">'+p[2].toFixed(1)+'</span><span class="dot hi" style="left:'+px(p[1])+'"></span><span class="dot-val" style="left:'+px(p[1])+';top:6px">'+p[1].toFixed(1)+'</span></div></div>';}).join('');
+  var ax='';for(var v=5.5;v<=7.51;v+=0.5){ax+='<span style="left:'+px(v)+'">'+v.toFixed(1)+'</span>';}document.getElementById('axis').innerHTML=ax;
+
+  // slider
+  var tk=document.getElementById('talk'),tv=document.getElementById('talkVal'),sm=document.getElementById('sMem'),sb=document.getElementById('sBoss'),tm=document.getElementById('talkMsg');
+  function upd(){var v=+tk.value;tv.textContent=v;sm.style.width=v+'%';sb.style.width=(100-v)+'%';
+    var m;
+    if(v<40)m='上司の説明や指示が中心の時間です。進捗確認や指導としては成り立ちますが、部下の振り返りは起きにくく、調査で「価値が低い」と評価されやすい形です。';
+    else if(v<55)m='対話としては成立しています。ただし、どちらが多く話したかの認識は上司と部下でずれやすいことが分かっています（第1章）。部下の感じ方を確かめる価値があります。';
+    else if(v<=85)m='研究の示唆に近い配分です。上司の発言は、要約・問い・承認・最後の用件に集中します。';
+    else m='上司がほとんど話さない状態です。傾聴としては良くても、必要な情報提供や支援の約束が抜けていないか確認してください。経験の浅い人には手がかりが足りないことがあります。';
+    tm.textContent=m;}
+  tk.addEventListener('input',upd);upd();
+
+  // topic menu
+  var topics=[
+    ["業務と困りごと",["いま一番時間を取られているのは何ですか","進めるうえで、詰まっているところはありますか","私が取り除ける障害はありますか"]],
+    ["振り返り",["最近うまくいったことを一つ挙げると？　何が効いたと思いますか","やり直せるなら、どこを変えますか"]],
+    ["承認と強み",["最近、自分でも手応えがあった仕事は？","周りから頼られることが多いのは、どんな場面ですか"]],
+    ["協働と人間関係",["チームの中で、やりやすい／やりにくい連携はありますか","誰かとつないだほうが進みそうな話はありますか"]],
+    ["目標と優先順位",["今月いちばん大事なのはどれだと捉えていますか","優先順位が私の認識とずれていないか、確認させてください"]],
+    ["キャリアと成長",["1年後、どんな仕事ができるようになっていたいですか","いま伸ばしたい力と、そのために試せそうな仕事は？"]],
+    ["コンディション",["最近の働き方のペースはどうですか","業務量について、調整が必要なところはありますか"]],
+    ["上司へのフィードバック",["私の関わり方で、助かっていること／変えてほしいことはありますか","この1on1の時間、もっと役立つようにするには？"]]
+  ];
+  var ch=document.getElementById('chips'),ql=document.getElementById('qlist');
+  ch.innerHTML=topics.map(function(t,i){return '<button type="button" class="chip" data-i="'+i+'" aria-pressed="'+(i===0)+'">'+t[0]+'</button>';}).join('');
+  function showT(i){[].forEach.call(ch.children,function(c,j){c.setAttribute('aria-pressed',i===j);});ql.innerHTML=topics[i][1].map(function(q){return '<li>「'+q+'」</li>';}).join('');}
+  ch.addEventListener('click',function(e){var b=e.target.closest('.chip');if(b)showT(+b.getAttribute('data-i'));});showT(0);
+
+  // failures
+  var fails=[
+    ["進捗報告会になる","上司が知りたい進捗の確認で時間が埋まり、部下の話す余地がない。","進捗は日常の報告経路や共有ツールに移す。1on1の冒頭は部下のテーマから始める。"],
+    ["上司が話しすぎる","助言、経験談、指示が続き、部下はうなずくだけになる。上司は「よく話を聞いた」と感じている。","第5章の配分を意識する。終わりに「今日、話したいことは話せましたか」と確かめる。"],
+    ["上司の都合で中止・延期が続く","「忙しいから今週はなし」が重なり、部下は優先順位が低いと受け取る。Rogelbergが挙げた事例の上司も、忙しいと1on1を中止していた。","日時を固定し、ずらす場合も中止ではなく振り替える。短縮してでも実施する。"],
+    ["評価面談と混ざる","1on1で話した弱音や失敗が査定の材料になり、次から本音が出なくなる。","評価の場と1on1を分け、1on1の記録をどう扱うかを最初に共有する。"],
+    ["尋問・詮索になる","「なぜ」が続く。私生活に必要以上に踏み込む。","「なぜ」を「何が」に言い換える。私的な事情は本人が話す範囲で受け止める（第10章）。"],
+    ["毎回雑談で終わる","関係は良くなるが、仕事の振り返りや次の一歩が出てこない。","雑談は導入に使い、後半は経験学習の4段階の問いへ移る。"],
+    ["上司が先に答えを出す","解決は早いが、部下が考える段階が飛ぶ。次も同じ相談が来る。","まず「どうしたいと思っていますか」と聞く。経験が浅い場合は選択肢を示し、選ぶのは部下に任せる。"],
+    ["約束が実行されない","上司が「調整しておく」と言ったまま動かない。記録がなく、次回に前回の話が引き継がれない。","双方がメモを残し、次回の冒頭で前回の約束を確認する。"]
+  ];
+  document.getElementById('fails').innerHTML=fails.map(function(f){return '<details class="acc"><summary><svg class="icon" style="color:var(--rust)"><use href="#i-alert"/></svg>'+f[0]+'<svg class="icon chev"><use href="#i-chev"/></svg></summary><div class="acc-body"><div class="rx small"><b>症状</b><span>'+f[1]+'</span><b class="ok">処方</b><span>'+f[2]+'</span></div></div></details>';}).join('');
+
+  // quiz
+  var qz=[
+    ["部下への配慮を目的に、家族の状況について話を聞く",false,"該当しないと考えられる例として示されています。ただし、配慮という目的に必要な範囲にとどめ、答えるかどうかは本人に委ねます。"],
+    ["本人の了解を得たうえで、機微な個人情報を必要な範囲で人事担当者に伝え、配慮を促す",false,"該当しないと考えられる例として示されています。鍵は「本人の了解」と「必要な範囲」です。"],
+    ["1on1で部下から聞いた性的指向・性自認や病歴、不妊治療などの情報を、本人の了解なく他の職員に話す",true,"厚生労働省は「上司との面談等で話した」機微な個人情報を了解なく暴露することを、該当すると考えられる例に挙げています。1on1はまさにこの場面です。善意の共有であっても、本人の了解なく広げません。"],
+    ["職場の外でも部下を継続的に監視したり、私物を撮影したりする",true,"該当すると考えられる例として示されています。"]
+  ];
+  document.getElementById('quiz').innerHTML=qz.map(function(q,i){return '<div class="qitem"><p class="small"><strong>例'+(i+1)+'</strong>　'+q[0]+'</p><div class="qbtns"><button type="button" data-q="'+i+'" data-a="1">該当しうる</button><button type="button" data-q="'+i+'" data-a="0">該当しないと考えられる</button></div><div class="qans" id="qa'+i+'" hidden></div></div>';}).join('');
+  document.getElementById('quiz').addEventListener('click',function(e){var b=e.target.closest('button[data-q]');if(!b)return;var i=+b.getAttribute('data-q'),a=b.getAttribute('data-a')==='1',q=qz[i],box=document.getElementById('qa'+i);var ok=a===q[1];box.hidden=false;box.className='qans '+(ok?'ok':'ng');box.textContent=(ok?'その通りです。':'厚生労働省の例では逆の扱いです。')+q[2];});
+
+  // radical candor
+  var qd=[
+    '徹底した率直さ：相手を大切に思うからこそ、具体的な行動について、はっきり、早めに伝える。スコットは、褒めるのは人前で、批判は一対一で、とも勧めています。',
+    '破滅的な共感：嫌われたくない、傷つけたくない、という思いから指摘を控える。本人は改善の機会を失い、周囲には不公平感が残る。スコットは、多くの上司が陥るのはこの象限だとしています。',
+    '不快な攻撃：内容は正しくても、配慮なく言う。相手は防御的になり、メッセージが届かない。立場の差がある関係では、パワーハラスメントの線にも近づく。',
+    '操作的な不誠実：本人には言わず、陰で評価を下げる。スコットはこれを最悪の状態としています。'];
+  var qcs=[].slice.call(document.querySelectorAll('#quad .qcell')),qt=document.getElementById('quadText');
+  function showQ(i){qcs.forEach(function(c){c.setAttribute('aria-pressed',+c.getAttribute('data-q')===i);});qt.textContent=qd[i];}
+  qcs.forEach(function(c){c.addEventListener('click',function(){showQ(+c.getAttribute('data-q'));});});showQ(0);
+
+  // zones
+  var zd=['学習ゾーン：安全で、かつ高い成果を目指している。互いを学びの資源とみなし、根拠のある挑戦をし、責任も持ち続ける。1on1が目指す状態。',
+    '快適ゾーン：仕返しを恐れずに話せるが、互いに成果への挑戦を求めない。居心地は良いが、成長は限られる。',
+    '不安ゾーン：成果を求め、責任も問うが、懸念を口にしたり助けを求めたりできない。そのため改善できない。',
+    '無関心ゾーン：関係の形だけをなぞっている。リスクも取らず、より良い成果も目指していない。'];
+  var zcs=[].slice.call(document.querySelectorAll('#zone .qcell')),zt=document.getElementById('zoneText');
+  function showZ(i){zcs.forEach(function(c){c.setAttribute('aria-pressed',+c.getAttribute('data-z')===i);});zt.textContent=zd[i];}
+  zcs.forEach(function(c){c.addEventListener('click',function(){showZ(+c.getAttribute('data-z'));});});showZ(0);
+
+  // nine box
+  var rowsN=['業務','組織','個人'],colsN=['現在','過去','未来'];
+  var nineQ={
+    '業務現在':['いま抱えている仕事で、不安やもやもやしていることは？','言葉にしにくいけれど、引っかかっていることはありますか'],
+    '業務過去':['この1か月でうまくいった仕事、いかなかった仕事は？','そこから次に生かせそうなことは？'],
+    '業務未来':['この先3か月で、取り組みたい仕事や役割は？','そのために必要な準備は？'],
+    '組織現在':['いまのチームの動き方で、気になっていることは？','方針で分かりにくいところはありますか'],
+    '組織過去':['最近の組織の変化を、どう受け止めましたか','前のやり方のほうが良かった点はありますか'],
+    '組織未来':['事業所の方向性について、共感できるところ・引っかかるところは？','チームがどうなっていたら働きやすいですか'],
+    '個人現在':['最近の働き方のペースや、調子はどうですか','仕事の中で、いま楽しめていることは？'],
+    '個人過去':['これまでの仕事で、自分らしさが出たと思う経験は？','この仕事を選んだときに大事にしていたことは？'],
+    '個人未来':['数年後、どんな専門性を持っていたいですか','試してみたい役割や挑戦はありますか']
+  };
+  var nn=document.getElementById('nine'),nq=document.getElementById('nineQ');
+  var html='<div></div>'+colsN.map(function(c){return '<div class="h">'+c+'</div>';}).join('');
+  rowsN.forEach(function(rw){html+='<div class="h">'+rw+'</div>';colsN.forEach(function(c){html+='<button type="button" data-k="'+rw+c+'" aria-pressed="false">'+rw+'×'+c+'</button>';});});
+  nn.innerHTML=html;
+  function showN(k){[].forEach.call(nn.querySelectorAll('button'),function(b){b.setAttribute('aria-pressed',b.getAttribute('data-k')===k);});nq.innerHTML=nineQ[k].map(function(q){return '<li>「'+q+'」</li>';}).join('');}
+  nn.addEventListener('click',function(e){var b=e.target.closest('button[data-k]');if(b)showN(b.getAttribute('data-k'));});showN('業務現在');
+
+  // jump links
+  [].forEach.call(document.querySelectorAll('[data-jump]'),function(b){b.addEventListener('click',function(){scrollToSection(b.getAttribute('data-jump'));});});
+
+  // checklist
+  var items=["部下が話したいテーマを、事前に出してもらっている","1on1の日時が決まっていて、中止せず振り替えている","冒頭で「今日は何から話しますか」と部下に主導権を渡している","部下のほうが長く話している（と部下も感じていそうだ）","答えを言う前に「どうしたいと思っていますか」と聞いている","フィードバックは人柄ではなく、具体的な行動と状況に向けている","うまくいったことを、具体的に言葉にして伝えている","上司の用件は最後に回している","次の一歩を、部下自身の言葉で確認している","自分が約束した支援を、次回までに実行している","評価面談と1on1を分け、記録の扱いを伝えている","いつもと違う様子に気づいたとき、つなぐ先を知っている","部下に、1on1そのものの感想や改善点を聞いたことがある","部下の案が実行可能なら、自分の案よりも少し劣っていても任せている"];
+  var ck=document.getElementById('check');
+  ck.innerHTML=items.map(function(t,i){return '<label for="c'+i+'"><input type="checkbox" id="c'+i+'"><span class="small">'+t+'</span></label>';}).join('');
+  var sn=document.getElementById('scoreNum'),sg=document.getElementById('scoreMsg');
+  ck.addEventListener('change',function(){var n=ck.querySelectorAll('input:checked').length;sn.textContent=n+' / 14';
+    sg.textContent=n===0?'チェックすると、目安が表示されます':n<6?'土台づくりの段階。まずは日時の固定と、部下のテーマから始めることを。':n<11?'形はできています。チェックが付かなかった項目を一つだけ次回の目標に。':'多くを実践できています。部下にこの時間の感想を聞いて、認識のずれを確かめてみてください。';});
+})();
+</script>
+
+</body></html>
